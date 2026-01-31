@@ -77,12 +77,13 @@ export default function PresentationOverview() {
                 <video 
                   ref={videoRef}
                   controls 
+                  autoPlay
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   className="w-full h-full"
-                  poster="https://images.pexels.com/photos/2657858/pexels-photo-2657858.jpeg"
+                  poster="/images/poster-video.jpg"
                 >
-                  <source src="https://videos.pexels.com/video-files/2657858/2657858-hd_1920_1080_30fps.mp4" type="video/mp4" />
+                  <source src="/fazenda-video.mp4" type="video/mp4" />
                   Seu navegador não suporta a tag de vídeo.
                 </video>
                 

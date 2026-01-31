@@ -94,7 +94,7 @@ export default function DataRoomPage() {
     // Check if it's one of the real documents we have available
     if (doc.id === 'DOC-001' || doc.id === 'DOC-002' || doc.name.includes('Inteiro Teor')) {
       const link = document.createElement('a')
-      link.href = '/documents/certidao inteiro teor 10-12-2025.pdf'
+      link.href = '/documents/certidao_inteiro_teor_2025.pdf'
       link.download = doc.name + '.pdf'
       document.body.appendChild(link)
       link.click()
@@ -107,7 +107,7 @@ export default function DataRoomPage() {
 
   const handleView = (doc: any) => {
     if (doc.id === 'DOC-001' || doc.id === 'DOC-002' || doc.name.includes('Inteiro Teor')) {
-      window.open('/documents/certidao inteiro teor 10-12-2025.pdf', '_blank')
+      window.open('/documents/certidao_inteiro_teor_2025.pdf', '_blank')
     } else {
       alert(`Simulação: Visualização do arquivo "${doc.name}".`)
     }
