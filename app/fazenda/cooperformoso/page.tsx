@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Download, MapPin, Calendar, CheckCircle2, AreaChart, Droplets, Sun, Warehouse, Video } from "lucide-react"
+import { Download, MapPin, Calendar, CheckCircle2, AreaChart, Droplets, Sun, Warehouse, Video, Sprout, Truck, ShieldCheck, FileText } from "lucide-react"
 
 export default function CooperformosoPage() {
   const [showVideo, setShowVideo] = useState(false)
@@ -133,14 +133,45 @@ export default function CooperformosoPage() {
 
             {/* Tabs for Details */}
             <Tabs defaultValue="infra" className="w-full">
-              <TabsList className="w-full justify-start h-auto p-1 bg-muted/50">
-                <TabsTrigger value="infra" className="py-3 px-6 text-base">Infraestrutura</TabsTrigger>
-                <TabsTrigger value="solo" className="py-3 px-6 text-base">Solo e Clima</TabsTrigger>
-                <TabsTrigger value="doc" className="py-3 px-6 text-base">Documentação</TabsTrigger>
+              <TabsList className="w-full justify-start h-auto p-1 bg-muted/50 overflow-x-auto flex-nowrap">
+                <TabsTrigger value="infra" className="py-3 px-6 text-base whitespace-nowrap">Infraestrutura</TabsTrigger>
+                <TabsTrigger value="prod" className="py-3 px-6 text-base whitespace-nowrap">Produção</TabsTrigger>
+                <TabsTrigger value="log" className="py-3 px-6 text-base whitespace-nowrap">Logística</TabsTrigger>
+                <TabsTrigger value="doc" className="py-3 px-6 text-base whitespace-nowrap">Documentação</TabsTrigger>
               </TabsList>
-              <TabsContent value="infra" className="mt-6">
+              
+              <TabsContent value="infra" className="mt-6 space-y-6">
                 <div className="bg-card rounded-lg border p-6">
-                  <h4 className="text-xl font-semibold mb-4">Agrovila e Instalações</h4>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <Droplets className="text-blue-500" /> Sistema de Irrigação
+                  </h4>
+                  <p className="text-muted-foreground mb-4">
+                    A propriedade utiliza um avançado sistema de <strong>sub-irrigação</strong>, que oferece vantagens competitivas únicas:
+                  </p>
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <li className="flex items-start gap-3 bg-muted/30 p-3 rounded-md">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 shrink-0" />
+                      <span>Baixo custo de manutenção e operação (consumo reduzido de energia).</span>
+                    </li>
+                    <li className="flex items-start gap-3 bg-muted/30 p-3 rounded-md">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 shrink-0" />
+                      <span>Sanidade vegetal superior (sem molhamento aéreo, reduzindo doenças).</span>
+                    </li>
+                    <li className="flex items-start gap-3 bg-muted/30 p-3 rounded-md">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 shrink-0" />
+                      <span>Eficiência hídrica com reaproveitamento de água.</span>
+                    </li>
+                    <li className="flex items-start gap-3 bg-muted/30 p-3 rounded-md">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 shrink-0" />
+                      <span>Infraestrutura consolidada com canais e drenos.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-card rounded-lg border p-6">
+                  <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <Warehouse className="text-orange-500" /> Agrovila e Instalações
+                  </h4>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-primary mt-1" />
@@ -148,51 +179,136 @@ export default function CooperformosoPage() {
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-primary mt-1" />
-                      <span>Instalações operacionais completas.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-1" />
                       <span>Estrutura de assistência técnica integrada.</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-1" />
-                      <span>Sistema de irrigação robusto com amplos reservatórios.</span>
                     </li>
                   </ul>
                 </div>
               </TabsContent>
-              <TabsContent value="solo" className="mt-6">
+
+              <TabsContent value="prod" className="mt-6 space-y-6">
                 <div className="bg-card rounded-lg border p-6">
-                  <h4 className="text-xl font-semibold mb-4">Características Agronômicas</h4>
-                  <p className="mb-4 text-muted-foreground">
-                    Solos de várzea com excelentes características físicas para irrigação. Originalmente de média fertilidade, foram corrigidos ao longo de décadas, atingindo hoje níveis elevados de produtividade.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4 mt-4">
-                    <div className="bg-muted p-4 rounded-md">
-                      <span className="block text-xs font-uppercase text-muted-foreground tracking-wider">Altitude</span>
-                      <span className="font-semibold text-lg">200m</span>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <Sprout className="text-green-600" /> Potencial Produtivo
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="space-y-2">
+                      <h5 className="font-medium text-foreground">Arroz Irrigado</h5>
+                      <p className="text-sm text-muted-foreground">
+                        Carro-chefe da propriedade, com alta produtividade e tradição de décadas. Tecnologia de ponta adaptada ao solo de várzea.
+                      </p>
                     </div>
-                    <div className="bg-muted p-4 rounded-md">
-                      <span className="block text-xs font-uppercase text-muted-foreground tracking-wider">Localização</span>
-                      <span className="font-semibold text-lg">Bacia do Rio Araguaia</span>
+                    <div className="space-y-2">
+                      <h5 className="font-medium text-foreground">Soja (Sementes)</h5>
+                      <p className="text-sm text-muted-foreground">
+                        Produção na entressafra (maio-setembro). O clima seco na colheita garante sementes de altíssimo vigor e germinação.
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      <h5 className="font-medium text-foreground">Integração Pecuária</h5>
+                      <p className="text-sm text-muted-foreground">
+                        Uso das áreas de sequeiro e restos culturais para engorda de gado, otimizando o ciclo anual.
+                      </p>
                     </div>
                   </div>
                 </div>
+                
+                <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-6">
+                  <h4 className="font-semibold text-blue-800 mb-2">Diferencial Estratégico</h4>
+                  <p className="text-blue-700 text-sm">
+                    A colheita de soja ocorre na entressafra nacional, permitindo comercialização imediata sem custos de armazenagem e preços premium no mercado.
+                  </p>
+                </div>
               </TabsContent>
-              <TabsContent value="doc" className="mt-6">
-                <div className="bg-card rounded-lg border p-6 flex flex-col items-center justify-center text-center space-y-4 py-12">
-                  <div className="bg-primary/10 p-4 rounded-full text-primary">
-                    <Download className="w-8 h-8" />
+
+              <TabsContent value="log" className="mt-6 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-card rounded-lg border p-6">
+                    <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                      <Truck className="text-slate-600" /> Logística
+                    </h4>
+                    <ul className="space-y-4">
+                      <li className="flex items-center gap-3">
+                        <MapPin className="w-5 h-5 text-muted-foreground" />
+                        <span><strong>12 km</strong> de acesso asfaltado até a sede.</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <MapPin className="w-5 h-5 text-muted-foreground" />
+                        <span>Conexão direta com a <strong>BR-153</strong> (Belém-Brasília).</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <MapPin className="w-5 h-5 text-muted-foreground" />
+                        <span><strong>45 km</strong> da Ferrovia Norte-Sul (Pátio Multimodal).</span>
+                      </li>
+                    </ul>
                   </div>
-                  <div>
-                    <h4 className="text-xl font-semibold">Certidão Inteiro Teor</h4>
-                    <p className="text-muted-foreground max-w-sm mx-auto mt-2">
-                      Documentação completa disponível para análise jurídica. Atualizada em 10/12/2025.
+
+                  <div className="bg-card rounded-lg border p-6">
+                    <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                      <ShieldCheck className="text-emerald-600" /> Sustentabilidade
+                    </h4>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      Projeto consolidado há 30 anos, com passivo ambiental resolvido e plena conformidade legal.
                     </p>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                        <span>Outorgas de água vigentes.</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                        <span>Áreas de Reserva Legal e APP preservadas.</span>
+                      </li>
+                    </ul>
                   </div>
-                  <Button variant="outline" className="mt-4">
-                    Solicitar Acesso aos Documentos
-                  </Button>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="doc" className="mt-6">
+                <div className="bg-card rounded-lg border p-6">
+                  <h4 className="text-xl font-semibold mb-6">Documentação Disponível</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="/documents/certidao inteiro teor 10-12-2025.pdf" target="_blank" className="group flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div className="p-3 bg-red-100 text-red-600 rounded-lg group-hover:scale-110 transition-transform">
+                        <FileText className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h5 className="font-medium group-hover:text-primary transition-colors">Certidão Inteiro Teor</h5>
+                        <p className="text-xs text-muted-foreground">Atualizado em 10/12/2025 • PDF</p>
+                      </div>
+                      <Download className="w-5 h-5 ml-auto text-muted-foreground group-hover:text-primary" />
+                    </a>
+
+                    <a href="/documents/COOPERFORMOSO RESUMO.docx" target="_blank" className="group flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <div className="p-3 bg-blue-100 text-blue-600 rounded-lg group-hover:scale-110 transition-transform">
+                        <FileText className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h5 className="font-medium group-hover:text-primary transition-colors">Resumo Executivo</h5>
+                        <p className="text-xs text-muted-foreground">Detalhes do Projeto • DOCX</p>
+                      </div>
+                      <Download className="w-5 h-5 ml-auto text-muted-foreground group-hover:text-primary" />
+                    </a>
+                    
+                    <div className="flex items-center gap-4 p-4 border rounded-lg opacity-60 bg-muted/20">
+                      <div className="p-3 bg-gray-100 text-gray-500 rounded-lg">
+                        <MapPin className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h5 className="font-medium text-muted-foreground">CAR / Georreferenciamento</h5>
+                        <p className="text-xs text-muted-foreground">Disponível mediante solicitação</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 p-4 border rounded-lg opacity-60 bg-muted/20">
+                      <div className="p-3 bg-gray-100 text-gray-500 rounded-lg">
+                        <FileText className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h5 className="font-medium text-muted-foreground">CCIR / ITR</h5>
+                        <p className="text-xs text-muted-foreground">Disponível mediante solicitação</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </TabsContent>
             </Tabs>
