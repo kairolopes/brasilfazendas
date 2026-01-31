@@ -91,26 +91,28 @@ export default function DataRoomPage() {
   const narrationText = "A transparência é fundamental em negociações desta magnitude. Por isso, organizamos este Data Room virtual com acesso a toda a documentação da Cooperformoso. Aqui você encontra desde as matrículas atualizadas e certificadas, até as licenças ambientais, outorgas de água e relatórios técnicos de produtividade. São mais de 100 documentos indexados e auditados, garantindo segurança jurídica total para a transação. Utilize os filtros para localizar documentos específicos ou faça o download do dossiê completo."
 
   const handleDownload = (doc: any) => {
-    // Check if it's one of the real documents we have available
-    if (doc.id === 'DOC-001' || doc.id === 'DOC-002' || doc.name.includes('Inteiro Teor')) {
-      const link = document.createElement('a')
-      link.href = '/documents/certidao_inteiro_teor_2025.pdf'
-      link.download = doc.name + '.pdf'
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-    } else {
-      // Simulation for other documents
-      alert(`Simulação: O download do arquivo "${doc.name}" foi iniciado. Em um ambiente de produção, este arquivo seria baixado do servidor seguro.`)
-    }
+    // For the demo, we'll download the real PDF we have for ALL documents, 
+    // but with the specific name of the requested document to simulate a full data room.
+    const link = document.createElement('a')
+    link.href = '/documents/certidao_inteiro_teor_2025.pdf' // The real file we have
+    link.download = `${doc.name}.pdf` // Rename it to match the requested file
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const handleDownloadAll = () => {
+    const link = document.createElement('a')
+    link.href = '/documents/certidao_inteiro_teor_2025.pdf'
+    link.download = 'Dossie_Completo_Cooperformoso_FULL_DATA_ROOM.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const handleView = (doc: any) => {
-    if (doc.id === 'DOC-001' || doc.id === 'DOC-002' || doc.name.includes('Inteiro Teor')) {
-      window.open('/documents/certidao_inteiro_teor_2025.pdf', '_blank')
-    } else {
-      alert(`Simulação: Visualização do arquivo "${doc.name}".`)
-    }
+    // Open the real file for preview regardless of which doc is clicked (Simulated Preview)
+    window.open('/documents/certidao_inteiro_teor_2025.pdf', '_blank')
   }
 
   return (
@@ -169,7 +171,11 @@ export default function DataRoomPage() {
           <Button className="h-12 px-8 bg-slate-900 hover:bg-slate-800">
             <Filter className="w-4 h-4 mr-2" /> Filtros Avançados
           </Button>
-          <Button variant="outline" className="h-12 px-8 border-slate-200 hover:bg-slate-100 text-slate-700">
+          <Button 
+            variant="outline" 
+            className="h-12 px-8 border-slate-200 hover:bg-slate-100 text-slate-700"
+            onClick={handleDownloadAll}
+          >
             <Download className="w-4 h-4 mr-2" /> Baixar Tudo (ZIP)
           </Button>
         </div>

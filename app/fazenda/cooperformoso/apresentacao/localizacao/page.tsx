@@ -3,6 +3,20 @@
 import { motion } from "framer-motion"
 import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { MapPin, Navigation, Train, Truck } from "lucide-react"
+import dynamic from 'next/dynamic'
+
+// Dynamically import MapComponent to avoid SSR issues with Leaflet
+const MapComponent = dynamic(
+  () => import('@/components/presentation/ui/map-component'),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-slate-800 flex items-center justify-center">
+        <div className="text-slate-400 animate-pulse">Carregando mapa via satélite...</div>
+      </div>
+    )
+  }
+)
 
 export default function LocalizacaoPage() {
   const narrationText = "A localização da Cooperformoso é um ativo estratégico por si só. Situada no município de Formoso do Araguaia, a propriedade está a apenas 12 quilômetros de acesso asfaltado e conectada às principais artérias logísticas do país. A fazenda integra o corredor da BR-153, a espinha dorsal do transporte rodoviário brasileiro, facilitando o escoamento tanto para os portos do Norte quanto para os mercados do Sul. Além disso, a proximidade de 45 quilômetros com a Ferrovia Norte-Sul coloca a produção em uma posição privilegiada para exportação. Estamos inseridos na região do MATOPIBA, a mais nova e dinâmica fronteira agrícola do Brasil, e próximos ao Vale do Araguaia, garantindo valorização constante da terra."
@@ -68,19 +82,8 @@ export default function LocalizacaoPage() {
       </div>
 
       {/* Right Panel - Map */}
-      <div className="w-full md:w-2/3 h-[50vh] md:h-screen relative">
-         <iframe 
-           width="100%" 
-           height="100%" 
-           frameBorder="0" 
-           scrolling="no" 
-           marginHeight={0} 
-           marginWidth={0} 
-           src="https://maps.google.com/maps?q=Formoso%20do%20Araguaia&t=k&z=9&ie=UTF8&iwloc=&output=embed"
-           className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-1000"
-         ></iframe>
-         
-         <div className="absolute inset-0 pointer-events-none bg-gradient-to-l from-transparent via-transparent to-slate-900/90" />
+      <div className="w-full md:w-2/3 h-[50vh] md:h-screen relative bg-slate-800">
+         <MapComponent />
       </div>
     </div>
   )

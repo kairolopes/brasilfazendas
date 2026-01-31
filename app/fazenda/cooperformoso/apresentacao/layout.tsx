@@ -15,7 +15,8 @@ import {
   ArrowLeft,
   Menu,
   Database,
-  FileText
+  FileText,
+  Workflow
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -27,6 +28,7 @@ const sidebarItems = [
   { icon: MapIcon, label: "Localização", href: "/fazenda/cooperformoso/apresentacao/localizacao" },
   { icon: Warehouse, label: "Infraestrutura", href: "/fazenda/cooperformoso/apresentacao/infraestrutura" },
   { icon: Sprout, label: "Produção", href: "/fazenda/cooperformoso/apresentacao/producao" },
+  { icon: Workflow, label: "Processos e Fluxos", href: "/fazenda/cooperformoso/apresentacao/fluxos" },
   { icon: Scale, label: "Jurídico e Ambiental", href: "/fazenda/cooperformoso/apresentacao/juridico" },
   { icon: TrendingUp, label: "Inteligência de Mercado", href: "/fazenda/cooperformoso/apresentacao/mercado" },
   { icon: Database, label: "Centro de Inteligência (BI)", href: "/fazenda/cooperformoso/apresentacao/bi" },

@@ -1,21 +1,11 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { 
-  BarChart3, 
-  FileText, 
-  Droplets, 
-  Leaf, 
-  TrendingUp, 
-  Scale, 
-  AlertTriangle,
-  CheckCircle2,
-  Database
-} from "lucide-react"
 import { 
   AreaChart, 
   Area, 
@@ -28,258 +18,353 @@ import {
   Bar,
   PieChart,
   Pie,
-  Cell
-} from 'recharts'
+  Cell,
+  Legend,
+  LineChart,
+  Line,
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis
+} from "recharts"
+import { 
+  TrendingUp, 
+  DollarSign, 
+  Sprout, 
+  Droplets, 
+  Sun, 
+  Wind, 
+  Activity, 
+  ArrowUpRight, 
+  ArrowDownRight,
+  Database
+} from "lucide-react"
 
-// Dados Simulados para BI
-const rainfallData = [
-  { month: 'Jan', mm: 320 },
-  { month: 'Fev', mm: 280 },
-  { month: 'Mar', mm: 250 },
-  { month: 'Abr', mm: 180 },
-  { month: 'Mai', mm: 80 },
-  { month: 'Jun', mm: 20 },
-  { month: 'Jul', mm: 5 },
-  { month: 'Ago', mm: 10 },
-  { month: 'Set', mm: 90 },
-  { month: 'Out', mm: 160 },
-  { month: 'Nov', mm: 220 },
-  { month: 'Dez', mm: 290 },
+// Dados Simulados
+const productionData = [
+  { year: '2019', arroz: 45000, soja: 28000, milho: 15000 },
+  { year: '2020', arroz: 48000, soja: 32000, milho: 18000 },
+  { year: '2021', arroz: 52000, soja: 35000, milho: 22000 },
+  { year: '2022', arroz: 55000, soja: 42000, milho: 25000 },
+  { year: '2023', arroz: 58000, soja: 48000, milho: 28000 },
+  { year: '2024', arroz: 62000, soja: 55000, milho: 32000 },
+  { year: '2025', arroz: 65000, soja: 60000, milho: 35000 },
 ]
 
-const productionHistory = [
-  { safra: '19/20', sacas: 125000 },
-  { safra: '20/21', sacas: 132000 },
-  { safra: '21/22', sacas: 145000 },
-  { safra: '22/23', sacas: 158000 },
-  { safra: '23/24', sacas: 172000 },
+const financialData = [
+  { month: 'Jan', receita: 12.5, despesa: 4.2 },
+  { month: 'Fev', receita: 11.2, despesa: 3.8 },
+  { month: 'Mar', receita: 15.8, despesa: 5.1 },
+  { month: 'Abr', receita: 18.2, despesa: 6.5 },
+  { month: 'Mai', receita: 22.5, despesa: 8.2 },
+  { month: 'Jun', receita: 25.8, despesa: 9.1 },
+  { month: 'Jul', receita: 28.4, despesa: 8.5 },
+  { month: 'Ago', receita: 26.2, despesa: 7.8 },
+  { month: 'Set', receita: 21.5, despesa: 6.2 },
+  { month: 'Out', receita: 18.8, despesa: 5.5 },
+  { month: 'Nov', receita: 15.2, despesa: 4.8 },
+  { month: 'Dez', receita: 14.5, despesa: 4.5 },
 ]
 
 const landUseData = [
-  { name: 'Arroz Irrigado', value: 12000, color: '#0ea5e9' },
-  { name: 'Reserva Legal', value: 9500, color: '#22c55e' },
-  { name: 'APP', value: 3500, color: '#16a34a' },
-  { name: 'Infraestrutura', value: 2000, color: '#64748b' },
+  { name: 'Arroz Irrigado', value: 8500 },
+  { name: 'Soja (Safrinha)', value: 6200 },
+  { name: 'Reserva Legal', value: 4500 },
+  { name: 'APP', value: 1200 },
+  { name: 'Infraestrutura', value: 800 },
 ]
 
-const legalDocs = [
-  { id: 'M-12.345', type: 'Matrícula', status: 'Regular', date: '12/10/2025', details: 'Área principal de 5.000 ha, livre de ônus.' },
-  { id: 'M-12.346', type: 'Matrícula', status: 'Regular', date: '12/10/2025', details: 'Gleba B, averbação de reserva legal concluída.' },
-  { id: 'M-12.347', type: 'Matrícula', status: 'Regular', date: '12/10/2025', details: 'Área de expansão, georreferenciamento certificado.' },
-  { id: 'CAR-TO-999', type: 'CAR', status: 'Aprovado', date: '15/01/2025', details: 'Cadastro Ambiental Rural validado sem pendências.' },
-  { id: 'CCIR-2024', type: 'CCIR', status: 'Quitado', date: '20/12/2024', details: 'Certificado de Cadastro de Imóvel Rural em dia.' },
-  { id: 'ITR-2024', type: 'ITR', status: 'Pago', date: '30/09/2024', details: 'Imposto Territorial Rural quitado.' },
-  { id: 'OUT-H2O-01', type: 'Outorga', status: 'Vigente', date: '10/06/2028', details: 'Captação Rio Formoso - 15.000 m³/h' },
+const soilData = [
+  { subject: 'Matéria Orgânica', A: 120, fullMark: 150 },
+  { subject: 'Argila', A: 98, fullMark: 150 },
+  { subject: 'Fósforo', A: 86, fullMark: 150 },
+  { subject: 'Potássio', A: 99, fullMark: 150 },
+  { subject: 'Cálcio', A: 85, fullMark: 150 },
+  { subject: 'Magnésio', A: 65, fullMark: 150 },
 ]
 
-export default function BIPage() {
-  const narrationText = "Bem-vindo ao Centro de Inteligência da Cooperformoso. Aqui consolidamos terabytes de dados agronômicos, climáticos e jurídicos em uma interface de decisão executiva. Diferente de apresentações estáticas, este dashboard oferece uma visão granular do ativo. Você pode analisar o histórico pluviométrico que garante nossa segurança hídrica, a evolução consistente de produtividade e, principalmente, a auditoria documental completa. No painel jurídico, listamos as matrículas e certidões que compõem o dossiê de 100 páginas, comprovando a blindagem patrimonial do investimento."
+const COLORS = ['#16a34a', '#eab308', '#22c55e', '#15803d', '#3f3f46'];
+
+export default function BusinessIntelligencePage() {
+  const [activeTab, setActiveTab] = useState("overview")
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const narrationText = "Bem-vindo ao centro de inteligência da Cooperformoso. Aqui, utilizamos análise de dados avançada para monitorar cada aspecto da operação em tempo real. Os gráficos demonstram uma curva de crescimento consistente na produtividade de arroz e soja nos últimos 7 anos. Nossa saúde financeira é robusta, com margens de lucro operacional acima da média de mercado. Além disso, monitoramos a qualidade do solo e o uso da terra com precisão satelital. Esta é a prova numérica da eficiência e do potencial de retorno deste investimento."
+
+  if (!mounted) return null
 
   return (
-    <div className="min-h-screen bg-slate-50 p-6 md:p-12">
+    <div className="min-h-screen bg-slate-50 p-6 md:p-12 pb-24">
       <VirtualNarrator text={narrationText} />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-8 flex flex-col md:flex-row justify-between items-end gap-4"
         >
-          <div>
-            <span className="text-primary font-bold tracking-widest uppercase text-xs mb-2 block">Business Intelligence</span>
-            <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-900">
-              Centro de Inteligência
-            </h1>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2 bg-indigo-100 rounded-lg">
+              <Activity className="w-6 h-6 text-indigo-600" />
+            </div>
+            <span className="text-indigo-600 font-bold tracking-widest uppercase text-xs">Business Intelligence</span>
           </div>
-          <div className="flex gap-2">
-            <Badge variant="outline" className="px-3 py-1 bg-white border-slate-200 text-slate-600 gap-2">
-              <Database className="w-3 h-3" /> Atualizado: Hoje
-            </Badge>
-            <Badge className="px-3 py-1 bg-primary text-white gap-2">
-              <CheckCircle2 className="w-3 h-3" /> Dados Verificados
-            </Badge>
-          </div>
+          <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-900 mb-4">
+            Painel de Controle Estratégico
+          </h1>
+          <p className="text-slate-600 max-w-3xl text-lg">
+            Monitoramento em tempo real de KPIs operacionais, financeiros e agronômicos.
+            Tomada de decisão baseada em dados (Data-Driven Agriculture).
+          </p>
         </motion.div>
 
-        <Tabs defaultValue="overview" className="space-y-8">
-          <TabsList className="bg-white border border-slate-200 p-1 rounded-xl w-full md:w-auto overflow-x-auto flex justify-start h-auto">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg px-4 py-2">Visão Geral</TabsTrigger>
-            <TabsTrigger value="agronomy" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg px-4 py-2">Agronomia & Clima</TabsTrigger>
-            <TabsTrigger value="legal" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg px-4 py-2">Jurídico & Compliance</TabsTrigger>
-            <TabsTrigger value="financial" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg px-4 py-2">Financeiro</TabsTrigger>
+        {/* KPI Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card className="bg-white border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-2 bg-green-100 rounded-lg text-green-600">
+                  <TrendingUp className="w-5 h-5" />
+                </div>
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 flex gap-1 items-center">
+                  <ArrowUpRight className="w-3 h-3" /> +12.5%
+                </Badge>
+              </div>
+              <p className="text-sm text-slate-500 font-medium">Receita Bruta (YTD)</p>
+              <h3 className="text-2xl font-bold text-slate-900">R$ 324.5M</h3>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-white border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
+                  <Sprout className="w-5 h-5" />
+                </div>
+                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 flex gap-1 items-center">
+                  <ArrowUpRight className="w-3 h-3" /> +8.2%
+                </Badge>
+              </div>
+              <p className="text-sm text-slate-500 font-medium">Produtividade Média</p>
+              <h3 className="text-2xl font-bold text-slate-900">185 sc/ha</h3>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-2 bg-amber-100 rounded-lg text-amber-600">
+                  <DollarSign className="w-5 h-5" />
+                </div>
+                <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200 flex gap-1 items-center">
+                  <ArrowDownRight className="w-3 h-3" /> -2.4%
+                </Badge>
+              </div>
+              <p className="text-sm text-slate-500 font-medium">Custo Operacional</p>
+              <h3 className="text-2xl font-bold text-slate-900">R$ 4.250/ha</h3>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-2 bg-cyan-100 rounded-lg text-cyan-600">
+                  <Database className="w-5 h-5" />
+                </div>
+                <Badge variant="outline" className="bg-cyan-50 text-cyan-700 border-cyan-200">
+                  Online
+                </Badge>
+              </div>
+              <p className="text-sm text-slate-500 font-medium">Pontos de Coleta</p>
+              <h3 className="text-2xl font-bold text-slate-900">1.240</h3>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Main Charts Area */}
+        <Tabs defaultValue="overview" className="space-y-6" onValueChange={setActiveTab}>
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 lg:w-[600px] h-12 bg-white border border-slate-200 p-1 rounded-xl">
+            <TabsTrigger value="overview" className="rounded-lg data-[state=active]:bg-slate-900 data-[state=active]:text-white">Visão Geral</TabsTrigger>
+            <TabsTrigger value="financial" className="rounded-lg data-[state=active]:bg-slate-900 data-[state=active]:text-white">Financeiro</TabsTrigger>
+            <TabsTrigger value="production" className="rounded-lg data-[state=active]:bg-slate-900 data-[state=active]:text-white">Produção</TabsTrigger>
+            <TabsTrigger value="soil" className="rounded-lg data-[state=active]:bg-slate-900 data-[state=active]:text-white">Agronômico</TabsTrigger>
           </TabsList>
 
-          {/* OVERVIEW TAB */}
-          <TabsContent value="overview">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {[
-                { label: 'Valor de Mercado (Est.)', value: 'R$ 950 Mi', icon: TrendingUp, color: 'text-green-600', bg: 'bg-green-50' },
-                { label: 'Área Total', value: '27.000 ha', icon: Leaf, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                { label: 'Capacidade Hídrica', value: 'Ilimitada', icon: Droplets, color: 'text-blue-600', bg: 'bg-blue-50' },
-                { label: 'Status Legal', value: '100% Regular', icon: Scale, color: 'text-purple-600', bg: 'bg-purple-50' },
-              ].map((kpi, i) => (
-                <Card key={i} className="border-none shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-6 flex items-center gap-4">
-                    <div className={`p-4 rounded-xl ${kpi.bg} ${kpi.color}`}>
-                      <kpi.icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-slate-500 font-medium">{kpi.label}</p>
-                      <h3 className="text-2xl font-bold text-slate-900">{kpi.value}</h3>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="border-none shadow-lg">
+          <TabsContent value="overview" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card className="shadow-lg border-none">
                 <CardHeader>
-                  <CardTitle>Uso do Solo</CardTitle>
+                  <CardTitle>Evolução da Produção (Sacas)</CardTitle>
+                  <CardDescription>Comparativo histórico Arroz vs Soja vs Milho</CardDescription>
                 </CardHeader>
-                <CardContent className="h-[300px]">
+                <CardContent className="h-[350px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={productionData}>
+                      <defs>
+                        <linearGradient id="colorArroz" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#16a34a" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#16a34a" stopOpacity={0}/>
+                        </linearGradient>
+                        <linearGradient id="colorSoja" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#eab308" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#eab308" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <XAxis dataKey="year" />
+                      <YAxis />
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                      <Tooltip 
+                        contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                      />
+                      <Area type="monotone" dataKey="arroz" stackId="1" stroke="#16a34a" fill="url(#colorArroz)" />
+                      <Area type="monotone" dataKey="soja" stackId="1" stroke="#eab308" fill="url(#colorSoja)" />
+                      <Area type="monotone" dataKey="milho" stackId="1" stroke="#22c55e" fill="#22c55e" fillOpacity={0.6} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-lg border-none">
+                <CardHeader>
+                  <CardTitle>Uso do Solo (Hectares)</CardTitle>
+                  <CardDescription>Distribuição atual das áreas produtivas e preservação</CardDescription>
+                </CardHeader>
+                <CardContent className="h-[350px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
                         data={landUseData}
                         cx="50%"
                         cy="50%"
-                        innerRadius={60}
-                        outerRadius={80}
+                        innerRadius={80}
+                        outerRadius={120}
                         paddingAngle={5}
                         dataKey="value"
                       >
                         {landUseData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
                       <Tooltip />
+                      <Legend verticalAlign="bottom" height={36} />
                     </PieChart>
-                  </ResponsiveContainer>
-                  <div className="flex justify-center gap-4 flex-wrap mt-4">
-                    {landUseData.map((d, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: d.color }} />
-                        <span>{d.name}: {d.value.toLocaleString()} ha</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-none shadow-lg">
-                <CardHeader>
-                  <CardTitle>Evolução Produtiva (Sacas/Ano)</CardTitle>
-                </CardHeader>
-                <CardContent className="h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={productionHistory}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="safra" />
-                      <YAxis />
-                      <Tooltip cursor={{fill: 'transparent'}} />
-                      <Bar dataKey="sacas" fill="#16a34a" radius={[4, 4, 0, 0]} />
-                    </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
             </div>
           </TabsContent>
 
-          {/* AGRONOMY TAB */}
-          <TabsContent value="agronomy">
-            <Card className="border-none shadow-lg mb-8">
+          <TabsContent value="financial" className="space-y-6">
+            <Card className="shadow-lg border-none">
               <CardHeader>
-                <CardTitle>Regime Pluviométrico (Médias Históricas)</CardTitle>
+                <CardTitle>Fluxo de Caixa 2024/2025 (Milhões R$)</CardTitle>
+                <CardDescription>Receitas vs Despesas Operacionais</CardDescription>
               </CardHeader>
               <CardContent className="h-[400px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={rainfallData}>
-                    <defs>
-                      <linearGradient id="colorRain" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <XAxis dataKey="month" />
-                    <YAxis unit=" mm" />
+                  <BarChart data={financialData}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="mm" stroke="#3b82f6" fillOpacity={1} fill="url(#colorRain)" />
-                  </AreaChart>
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip 
+                      cursor={{ fill: '#f3f4f6' }}
+                      contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                    />
+                    <Legend />
+                    <Bar dataKey="receita" name="Receita" fill="#16a34a" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="despesa" name="Despesa" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                  </BarChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* LEGAL TAB */}
-          <TabsContent value="legal">
-            <Card className="border-none shadow-lg">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle>Auditoria Documental (Data Room)</CardTitle>
-                <Badge variant="outline" className="border-green-500 text-green-600 bg-green-50">100% Compliance</Badge>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm text-left">
-                    <thead className="text-xs text-slate-500 uppercase bg-slate-50">
-                      <tr>
-                        <th className="px-6 py-3">Documento ID</th>
-                        <th className="px-6 py-3">Tipo</th>
-                        <th className="px-6 py-3">Status</th>
-                        <th className="px-6 py-3">Última Atualização</th>
-                        <th className="px-6 py-3">Detalhes</th>
-                        <th className="px-6 py-3 text-right">Ação</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {legalDocs.map((doc, i) => (
-                        <tr key={i} className="bg-white border-b hover:bg-slate-50 transition-colors">
-                          <td className="px-6 py-4 font-medium text-slate-900">{doc.id}</td>
-                          <td className="px-6 py-4">
-                            <Badge variant="secondary" className="font-normal">{doc.type}</Badge>
-                          </td>
-                          <td className="px-6 py-4">
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                              <span className="w-1.5 h-1.5 rounded-full bg-green-600"></span>
-                              {doc.status}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 text-slate-500">{doc.date}</td>
-                          <td className="px-6 py-4 text-slate-500 max-w-xs truncate">{doc.details}</td>
-                          <td className="px-6 py-4 text-right">
-                            <button className="text-primary hover:underline font-medium">Visualizar</button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="mt-6 text-center">
-                  <p className="text-sm text-slate-400 italic">
-                    *Esta é uma amostra. O dossiê completo contém mais de 100 documentos indexados e disponíveis para Due Diligence.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+          <TabsContent value="production" className="space-y-6">
+             {/* Additional production details would go here */}
+             <Card className="shadow-lg border-none">
+                <CardHeader>
+                  <CardTitle>Produtividade Histórica</CardTitle>
+                </CardHeader>
+                <CardContent className="h-[400px] flex items-center justify-center text-slate-400">
+                  <p>Dados detalhados disponíveis no Data Room</p>
+                </CardContent>
+             </Card>
           </TabsContent>
 
-          {/* FINANCIAL TAB */}
-          <TabsContent value="financial">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-slate-900 text-white border-none">
+           <TabsContent value="soil" className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="shadow-lg border-none">
                 <CardHeader>
-                  <CardTitle className="text-lg opacity-80">EBITDA (Últimos 12 Meses)</CardTitle>
+                  <CardTitle>Análise de Solo (Radar)</CardTitle>
+                  <CardDescription>Qualidade nutricional média dos talhões</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="text-4xl font-bold text-green-400">R$ 145.2 Mi</div>
-                  <div className="mt-2 text-sm text-slate-400 flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-green-500" /> +12% vs Ano Anterior
-                  </div>
+                <CardContent className="h-[400px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RadarChart cx="50%" cy="50%" outerRadius="80%" data={soilData}>
+                      <PolarGrid />
+                      <PolarAngleAxis dataKey="subject" />
+                      <PolarRadiusAxis angle={30} domain={[0, 150]} />
+                      <Radar name="Amostra A" dataKey="A" stroke="#16a34a" fill="#16a34a" fillOpacity={0.6} />
+                      <Legend />
+                    </RadarChart>
+                  </ResponsiveContainer>
                 </CardContent>
               </Card>
-              {/* Add more financial cards here */}
+              
+              <Card className="shadow-lg border-none bg-slate-900 text-white">
+                <CardHeader>
+                  <CardTitle className="text-white">Sensores IoT</CardTitle>
+                  <CardDescription className="text-slate-400">Monitoramento em Tempo Real</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                   <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                      <div className="flex items-center gap-3">
+                        <Droplets className="text-blue-400" />
+                        <div>
+                          <p className="font-medium">Umidade do Solo</p>
+                          <p className="text-xs text-slate-400">Talhão 04 - Pivô Central</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold text-blue-400">24%</p>
+                        <p className="text-xs text-green-400">Ideal</p>
+                      </div>
+                   </div>
+
+                   <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                      <div className="flex items-center gap-3">
+                        <Sun className="text-amber-400" />
+                        <div>
+                          <p className="font-medium">Radiação Solar</p>
+                          <p className="text-xs text-slate-400">Estação Meteorológica 01</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold text-amber-400">850</p>
+                        <p className="text-xs text-slate-400">W/m²</p>
+                      </div>
+                   </div>
+
+                   <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Wind className="text-slate-400" />
+                        <div>
+                          <p className="font-medium">Velocidade do Vento</p>
+                          <p className="text-xs text-slate-400">Direção NE</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold text-white">12</p>
+                        <p className="text-xs text-slate-400">km/h</p>
+                      </div>
+                   </div>
+                </CardContent>
+              </Card>
             </div>
           </TabsContent>
         </Tabs>
