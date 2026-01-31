@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooperformoso - Brasil Fazendas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body class="bg-white">
+    <!-- Hero -->
+    <div class="relative h-[80vh] w-full overflow-hidden">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="fazenda-video.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+        
+        <div class="absolute top-4 left-4 z-50">
+            <a href="dashboard.html" class="bg-white/20 backdrop-blur text-white px-4 py-2 rounded hover:bg-white/30 flex items-center gap-2 inline-block">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar
+            </a>
+        </div>
+
+        <div class="absolute bottom-0 left-0 right-0 p-8 md:p-16 text-white max-w-7xl mx-auto">
+            <span class="bg-green-600 px-3 py-1 rounded text-sm font-bold mb-4 inline-block">Oportunidade Premium</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Cooperformoso</h1>
+            <div class="flex flex-wrap gap-6 text-lg mb-8">
+                <span class="flex items-center gap-2"><i data-lucide="map-pin"></i> Formoso do Araguaia, TO</span>
+                <span class="flex items-center gap-2"><i data-lucide="area-chart"></i> 12.772 Hectares</span>
+                <span class="flex items-center gap-2"><i data-lucide="droplets"></i> Arroz Irrigado</span>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="scrollToDetails()" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-100">Explorar Detalhes</button>
+                <button onclick="startVideo()" class="bg-white/20 backdrop-blur border border-white/30 text-white px-8 py-3 rounded font-bold hover:bg-white/30 flex items-center gap-2">
+                    <i data-lucide="video"></i> Apresentação Virtual
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div id="details" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2 space-y-12">
+                <section>
+                    <h2 class="text-3xl font-bold mb-6 text-green-800">Sobre a Propriedade</h2>
+                    <div class="prose text-gray-600 text-lg">
+                        <p class="mb-4">A <strong>Cooperativa Agroindustrial Rio Formoso (COOPERFORMOSO)</strong> é um marco no agronegócio brasileiro, fundada em 1979.</p>
+                        <p>Responsável pelo surgimento do polo agrícola do Tocantins, sendo pioneira no plantio de arroz irrigado e soja na entressafra.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-2xl font-bold mb-6">Especificações</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-6 rounded">
+                            <p class="text-sm text-gray-500">Área Total</p>
+                            <p class="text-2xl font-bold">12.772 ha</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded">
+                            <p class="text-sm text-gray-500">Área Cultivo</p>
+                            <p class="text-2xl font-bold">4.822,5 ha</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded">
+                            <p class="text-sm text-gray-500">Reservatórios</p>
+                            <p class="text-2xl font-bold">4.170,2 ha</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded">
+                            <p class="text-sm text-gray-500">Reserva Legal</p>
+                            <p class="text-2xl font-bold">3.779,3 ha</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="sticky top-8 space-y-6">
+                    <div id="video-placeholder" class="bg-white border rounded-lg shadow-xl overflow-hidden">
+                        <div class="bg-green-50 p-4 border-b text-center">
+                            <h3 class="font-bold text-green-800">Videoconferência</h3>
+                        </div>
+                        <div class="p-6 text-center" id="jitsi-trigger">
+                            <button onclick="startVideo()" class="w-full bg-green-700 text-white py-3 rounded font-bold hover:bg-green-800 flex items-center justify-center gap-2">
+                                <i data-lucide="video"></i> Iniciar Sala Segura
+                            </button>
+                            <p class="text-xs text-gray-500 mt-2">Ambiente criptografado para negociação.</p>
+                        </div>
+                        <div id="jitsi-container" class="hidden h-[400px]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        checkAuth();
+
+        function scrollToDetails() {
+            document.getElementById('details').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startVideo() {
+            const domain = "meet.jit.si";
+            const options = {
+                roomName: "BrasilFazendas-Cooperformoso-" + Date.now(),
+                width: "100%",
+                height: 400,
+                parentNode: document.querySelector('#jitsi-container'),
+                configOverwrite: { startWithAudioMuted: true },
+                interfaceConfigOverwrite: { SHOW_JITSI_WATERMARK: false }
+            };
+            
+            document.getElementById('jitsi-trigger').classList.add('hidden');
+            document.getElementById('jitsi-container').classList.remove('hidden');
+            
+            const api = new JitsiMeetExternalAPI(domain, options);
+        }
+    </script>
+</body>
+</html>

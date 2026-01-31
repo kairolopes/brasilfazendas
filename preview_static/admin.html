@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Brasil Fazendas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center gap-4">
+            <a href="dashboard.html" class="text-gray-500 hover:text-gray-900"><i data-lucide="arrow-left"></i></a>
+            <h1 class="text-xl font-bold text-green-800">Painel Administrativo</h1>
+        </div>
+        <div class="flex items-center">
+            <span id="user-display" class="text-sm text-gray-600 mr-4"></span>
+            <button onclick="logout()" class="text-sm border px-3 py-1 rounded hover:bg-gray-50">Sair</button>
+        </div>
+    </header>
+
+    <main class="p-6 max-w-5xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold">Gestão de Corretores</h2>
+                <p class="text-gray-500">Controle o acesso e agendamentos.</p>
+            </div>
+            <button onclick="document.getElementById('add-modal').classList.remove('hidden')" class="bg-green-700 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-green-800">
+                <i data-lucide="user-plus" class="w-4 h-4"></i> Novo Corretor
+            </button>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 border-b">
+                    <tr>
+                        <th class="p-4 font-medium text-gray-500">Nome</th>
+                        <th class="p-4 font-medium text-gray-500">Email</th>
+                        <th class="p-4 font-medium text-gray-500">Acesso Agendado</th>
+                        <th class="p-4 font-medium text-gray-500 text-right">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="brokers-list">
+                    <!-- JS will populate -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Add Modal -->
+    <div id="add-modal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg w-96 shadow-xl">
+            <h3 class="text-lg font-bold mb-4">Adicionar Corretor</h3>
+            <form onsubmit="handleAddBroker(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Nome</label>
+                        <input type="text" id="new-name" class="w-full border rounded p-2" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Email</label>
+                        <input type="email" id="new-email" class="w-full border rounded p-2" required>
+                    </div>
+                    <div class="flex justify-end gap-2 mt-6">
+                        <button type="button" onclick="document.getElementById('add-modal').classList.add('hidden')" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        checkAuth('master');
+
+        // Mock Brokers Data (Local Storage for persistence in static preview)
+        let brokers = JSON.parse(localStorage.getItem('bf_brokers')) || [
+            { email: 'corretor@teste.com', name: 'Corretor Demo', scheduled: new Date().toISOString().split('T')[0] }
+        ];
+
+        function renderBrokers() {
+            const tbody = document.getElementById('brokers-list');
+            tbody.innerHTML = '';
+            
+            brokers.forEach((broker, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b last:border-0 hover:bg-gray-50';
+                tr.innerHTML = `
+                    <td class="p-4 font-medium">${broker.name}</td>
+                    <td class="p-4 text-gray-600">${broker.email}</td>
+                    <td class="p-4">
+                        <input type="date" value="${broker.scheduled}" onchange="updateDate(${index}, this.value)" class="border rounded px-2 py-1 text-sm">
+                    </td>
+                    <td class="p-4 text-right">
+                        <button onclick="deleteBroker(${index})" class="text-red-500 hover:text-red-700 p-2">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+            localStorage.setItem('bf_brokers', JSON.stringify(brokers));
+        }
+
+        function handleAddBroker(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-name').value;
+            const email = document.getElementById('new-email').value;
+            
+            brokers.push({
+                name,
+                email,
+                scheduled: new Date().toISOString().split('T')[0]
+            });
+            
+            document.getElementById('add-modal').classList.add('hidden');
+            renderBrokers();
+            e.target.reset();
+        }
+
+        function updateDate(index, date) {
+            brokers[index].scheduled = date;
+            localStorage.setItem('bf_brokers', JSON.stringify(brokers));
+        }
+
+        function deleteBroker(index) {
+            if(confirm('Remover este corretor?')) {
+                brokers.splice(index, 1);
+                renderBrokers();
+            }
+        }
+
+        renderBrokers();
+    </script>
+</body>
+</html>

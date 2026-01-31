@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Brasil Fazendas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="bg-white/95 backdrop-blur z-20 p-8 rounded-lg shadow-xl w-96">
+            <h1 class="text-2xl font-bold text-green-800 mb-2">Brasil Fazendas</h1>
+            <p class="text-gray-500 text-sm mb-6">Plataforma de Apresentação</p>
+            
+            <form onsubmit="handleSubmit(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Email</label>
+                        <input type="email" id="email" class="w-full border rounded p-2 text-sm" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Senha</label>
+                        <input type="password" id="password" class="w-full border rounded p-2 text-sm" required>
+                    </div>
+                    <p id="error" class="text-red-500 text-xs hidden">Credenciais inválidas.</p>
+                    <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white font-medium py-2 rounded transition">
+                        Entrar
+                    </button>
+                </div>
+            </form>
+            <div class="mt-4 text-center">
+                <p class="text-xs text-gray-500">Master: allancardozzo@gmail.com / 123456</p>
+                <p class="text-xs text-gray-500">Corretor: corretor@teste.com / 123456</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Clear session on load
+        localStorage.removeItem('bf_user');
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (login(email, password)) {
+                window.location.href = 'dashboard.html';
+            } else {
+                document.getElementById('error').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
