@@ -81,7 +81,7 @@ export function LogisticsMap() {
               </div>
               <div className="mt-2 text-center">
                 <p className="font-bold text-orange-400">Ferrovia Norte-Sul</p>
-                <p className="text-xs text-slate-400">45 km (Pátio Multimodal)</p>
+                <p className="text-xs text-slate-400">~250 km (Porto Nacional - TO)</p>
               </div>
             </motion.div>
 
@@ -95,7 +95,7 @@ export function LogisticsMap() {
               </div>
               <div className="mt-2 text-center">
                 <p className="font-bold text-blue-400">BR-153</p>
-                <p className="text-xs text-slate-400">Acesso Asfaltado (12 km)</p>
+                <p className="text-xs text-slate-400">Logística Rodoviária (Aliança)</p>
               </div>
             </motion.div>
             
@@ -108,8 +108,8 @@ export function LogisticsMap() {
                 <Plane className="w-6 h-6 text-emerald-400" />
               </div>
               <div className="mt-2 text-center">
-                <p className="font-bold text-emerald-400">Mercados Internacionais</p>
-                <p className="text-xs text-slate-400">Soja Semente e Arroz Premium</p>
+                <p className="font-bold text-emerald-400">Porto do Itaqui (MA)</p>
+                <p className="text-xs text-slate-400">~1.500 km (Exportação China/Europa)</p>
               </div>
             </motion.div>
 
