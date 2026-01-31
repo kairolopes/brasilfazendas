@@ -50,24 +50,24 @@ export default function MapComponent() {
       >
         <LayersControl position="topright">
           {/* Base Layers */}
-          <LayersControl.BaseLayer checked name="Satélite (Esri)">
+          <LayersControl.BaseLayer checked name="Google Híbrido (Satélite + Ruas)">
             <TileLayer
-              attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-            />
-          </LayersControl.BaseLayer>
-          
-          <LayersControl.BaseLayer name="Mapa Rodoviário (OSM)">
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
+              attribution='&copy; Google Maps'
             />
           </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer name="Terreno (Google)">
+          <LayersControl.BaseLayer name="Google Maps (Padrão)">
             <TileLayer
-              url="http://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}"
-              attribution='&copy; Google'
+              url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+              attribution='&copy; Google Maps'
+            />
+          </LayersControl.BaseLayer>
+
+          <LayersControl.BaseLayer name="Satélite (Esri)">
+            <TileLayer
+              attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
             />
           </LayersControl.BaseLayer>
         </LayersControl>
