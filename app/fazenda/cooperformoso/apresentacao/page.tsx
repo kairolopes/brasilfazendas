@@ -1,70 +1,99 @@
 "use client"
 
-import { HeroSection } from "@/components/presentation/hero-section"
-import { WaterCycle } from "@/components/presentation/water-cycle"
-import { ProductionStats } from "@/components/presentation/production-stats"
-import { LogisticsMap } from "@/components/presentation/logistics-map"
-import { Button } from "@/components/ui/button"
-import { ArrowLeft, Video } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { motion } from "framer-motion"
+import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
+import { ArrowRight, PlayCircle } from "lucide-react"
+import Link from "next/link"
 
-export default function PresentationPage() {
-  const router = useRouter()
+export default function PresentationOverview() {
+  const narrationText = "Olá. Seja bem-vindo à apresentação exclusiva da Cooperformoso. Sou sua assistente virtual e irei guiá-lo por esta jornada. Estamos prestes a conhecer um dos ativos mais valiosos do agronegócio brasileiro. Uma propriedade avaliada em quase um bilhão de reais, que não é apenas terra, mas um complexo agroindustrial consolidado. Prepare-se para ver números impressionantes, infraestrutura de ponta e um legado de sucesso. Utilize o menu lateral para navegar pelos capítulos detalhados deste dossiê."
 
   return (
-    <main className="min-h-screen bg-slate-950">
-      {/* Floating Navigation */}
-      <div className="fixed top-6 left-6 z-50">
-        <Button 
-          variant="outline" 
-          className="bg-black/20 backdrop-blur border-white/10 text-white hover:bg-white/10"
-          onClick={() => router.back()}
+    <div className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="w-full h-full object-cover"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" /> Voltar
-        </Button>
+          <source src="https://videos.pexels.com/video-files/2048386/2048386-hd_1920_1080_24fps.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
       </div>
 
-      <div className="fixed top-6 right-6 z-50">
-        <Button 
-          className="bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(22,163,74,0.4)]"
-          onClick={() => {
-            router.push('/fazenda/cooperformoso')
-            setTimeout(() => {
-               document.getElementById('details')?.scrollIntoView()
-            }, 500)
-          }}
+      <VirtualNarrator text={narrationText} />
+
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <Video className="mr-2 h-4 w-4" /> Agendar Visita
-        </Button>
-      </div>
-
-      {/* Sections */}
-      <HeroSection />
-      <ProductionStats />
-      <WaterCycle />
-      <LogisticsMap />
-
-      {/* Footer CTA */}
-      <section className="py-32 bg-slate-950 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10" />
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <h2 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8">
-            Um Legado à Espera
-          </h2>
-          <p className="text-xl text-slate-400 mb-12">
-            Oportunidades únicas exigem decisões precisas. <br/>
-            Agende uma apresentação técnica detalhada com nossa diretoria.
+          <div className="inline-block border border-white/20 bg-white/5 backdrop-blur-md px-4 py-1.5 rounded-full text-white/80 text-sm font-medium tracking-wider mb-6">
+            OPORTUNIDADE EXCLUSIVA
+          </div>
+          <h1 className="text-5xl md:text-8xl font-serif font-bold text-white mb-6 tracking-tight">
+            COOPERFORMOSO
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl mx-auto mb-12">
+            O coração do agronegócio no Tocantins. 
+            <span className="block mt-2 font-normal text-white">Um legado de 1 bilhão de reais.</span>
           </p>
-          <Button 
-            size="lg" 
-            className="text-lg px-12 py-8 bg-white text-slate-950 hover:bg-gray-100 font-semibold"
-            onClick={() => router.push('/fazenda/cooperformoso')}
-          >
-            Entrar em Contato
-          </Button>
-        </div>
-      </section>
+        </motion.div>
 
-    </main>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="flex flex-col md:flex-row items-center justify-center gap-6"
+        >
+          <Link href="/fazenda/cooperformoso/apresentacao/historia">
+            <button className="group relative px-8 py-4 bg-primary text-white text-lg font-bold rounded-full overflow-hidden shadow-[0_0_40px_rgba(22,163,74,0.4)] hover:shadow-[0_0_60px_rgba(22,163,74,0.6)] transition-all duration-300">
+              <span className="relative z-10 flex items-center gap-3">
+                Iniciar Apresentação <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
+          </Link>
+
+          <button className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
+            <PlayCircle className="w-12 h-12 stroke-1 group-hover:scale-110 transition-transform" />
+            <span className="text-left text-sm leading-tight">
+              Assista ao<br/>Teaser Oficial
+            </span>
+          </button>
+        </motion.div>
+      </div>
+
+      {/* Footer Stats */}
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/40 backdrop-blur-md"
+      >
+        <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center md:text-left">
+            <p className="text-slate-400 text-xs uppercase tracking-widest mb-1">Área Total</p>
+            <p className="text-2xl md:text-3xl font-bold text-white">27.000 ha</p>
+          </div>
+          <div className="text-center md:text-left">
+            <p className="text-slate-400 text-xs uppercase tracking-widest mb-1">Área Irrigada</p>
+            <p className="text-2xl md:text-3xl font-bold text-white">12.000 ha</p>
+          </div>
+          <div className="text-center md:text-left">
+            <p className="text-slate-400 text-xs uppercase tracking-widest mb-1">Infraestrutura</p>
+            <p className="text-2xl md:text-3xl font-bold text-white">Completa</p>
+          </div>
+          <div className="text-center md:text-left">
+            <p className="text-slate-400 text-xs uppercase tracking-widest mb-1">Localização</p>
+            <p className="text-2xl md:text-3xl font-bold text-white">Tocantins</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   )
 }
