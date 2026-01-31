@@ -13,7 +13,8 @@ import {
   TrendingUp, 
   Image as ImageIcon,
   ArrowLeft,
-  Menu
+  Menu,
+  Database
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -27,6 +28,7 @@ const sidebarItems = [
   { icon: Sprout, label: "Produção", href: "/fazenda/cooperformoso/apresentacao/producao" },
   { icon: Scale, label: "Jurídico e Ambiental", href: "/fazenda/cooperformoso/apresentacao/juridico" },
   { icon: TrendingUp, label: "Inteligência de Mercado", href: "/fazenda/cooperformoso/apresentacao/mercado" },
+  { icon: Database, label: "Centro de Inteligência (BI)", href: "/fazenda/cooperformoso/apresentacao/bi" },
 ]
 
 export default function PresentationLayout({ children }: { children: React.ReactNode }) {

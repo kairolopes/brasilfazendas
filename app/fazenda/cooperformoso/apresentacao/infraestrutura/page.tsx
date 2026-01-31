@@ -85,7 +85,7 @@ export default function InfraestruturaPage() {
             <div className="flex-1 w-full h-[300px] rounded-xl overflow-hidden bg-slate-800">
                {/* Placeholder for Agrovila Image */}
                <img 
-                 src="https://images.unsplash.com/photo-1585665814032-441f7126131d?q=80&w=800" 
+                 src="https://images.unsplash.com/photo-1535732820275-9e990e990e2f?q=80&w=800" 
                  alt="Silos e Armazéns" 
                  className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
                />

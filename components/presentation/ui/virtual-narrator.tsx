@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Play, Pause, Volume2, VolumeX, Mic } from "lucide-react"
+import { Play, Pause, Volume2, VolumeX } from "lucide-react"
 
 interface VirtualNarratorProps {
   text: string
@@ -10,7 +10,6 @@ interface VirtualNarratorProps {
 
 export function VirtualNarrator({ text }: VirtualNarratorProps) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(false)
   const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
 
   useEffect(() => {
@@ -20,7 +19,7 @@ export function VirtualNarrator({ text }: VirtualNarratorProps) {
     u.rate = 1.0
     u.pitch = 1.0
     
-    // Find a good female voice if available (Google Português do Brasil usually)
+    // Find a good female voice if available
     const voices = synth.getVoices()
     const ptVoice = voices.find(v => v.lang.includes('pt-BR') && v.name.includes('Google')) || voices.find(v => v.lang.includes('pt-BR'))
     if (ptVoice) u.voice = ptVoice
@@ -74,28 +73,29 @@ export function VirtualNarrator({ text }: VirtualNarratorProps) {
         whileTap={{ scale: 0.95 }}
         onClick={togglePlay}
         className={`
-          relative w-16 h-16 rounded-full shadow-xl flex items-center justify-center
-          ${isPlaying ? 'bg-primary text-white' : 'bg-white text-primary'}
-          transition-colors duration-300 border-4 border-white/20
+          relative w-20 h-20 rounded-full shadow-2xl flex items-center justify-center overflow-hidden
+          transition-all duration-300 border-4 border-white/20 group
+          ${isPlaying ? 'ring-4 ring-primary/50' : ''}
         `}
       >
-        {/* Avatar Ring Animation */}
-        {isPlaying && (
-          <span className="absolute inset-0 rounded-full border-4 border-primary opacity-20 animate-ping" />
-        )}
-        
-        {/* Avatar Image Placeholder */}
-        <div className="absolute inset-1 rounded-full overflow-hidden bg-slate-100">
-             <img 
-               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ana&backgroundColor=b6e3f4" 
-               alt="AI Avatar"
-               className="w-full h-full object-cover"
-             />
+        {/* Realistic Video Avatar Loop */}
+        <div className="absolute inset-0 bg-slate-900">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className={`w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-60 grayscale'}`}
+          >
+            {/* Using a stock footage of a presenter speaking - simulated */}
+            <source src="https://videos.pexels.com/video-files/3205634/3205634-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         </div>
 
         {/* Status Icon Overlay */}
-        <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-1.5 shadow-sm text-xs font-bold z-10">
-            {isPlaying ? <Pause className="w-4 h-4 text-primary" /> : <Play className="w-4 h-4 text-slate-400" />}
+        <div className="absolute bottom-2 right-2 bg-white rounded-full p-1.5 shadow-sm text-xs font-bold z-10 backdrop-blur-sm bg-white/80">
+            {isPlaying ? <Pause className="w-3 h-3 text-primary" /> : <Play className="w-3 h-3 text-slate-900" />}
         </div>
       </motion.button>
     </div>
