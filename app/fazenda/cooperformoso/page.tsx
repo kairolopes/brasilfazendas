@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Download, MapPin, Calendar, CheckCircle2, AreaChart, Droplets, Sun, Warehouse, Video, Sprout, Truck, ShieldCheck, FileText } from "lucide-react"
+import { Download, MapPin, Calendar, CheckCircle2, AreaChart, Droplets, Sun, Warehouse, Video, Sprout, Truck, ShieldCheck, FileText, PlayCircle } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function CooperformosoPage() {
   const [showVideo, setShowVideo] = useState(false)
+  const router = useRouter()
 
   return (
     <div className="min-h-screen bg-background">
@@ -46,12 +48,12 @@ export default function CooperformosoPage() {
               <Droplets className="text-primary" /> Maior Projeto de Arroz Irrigado
             </span>
           </div>
-          <div className="flex gap-4">
-            <Button size="lg" className="text-lg px-8" onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}>
-              Explorar Detalhes
+          <div className="flex gap-4 flex-wrap">
+            <Button size="lg" className="text-lg px-8 bg-white text-slate-900 hover:bg-gray-100" onClick={() => router.push('/fazenda/cooperformoso/apresentacao')}>
+              <PlayCircle className="mr-2 h-5 w-5" /> Modo Apresentação
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 bg-white/10 backdrop-blur border-white/20 hover:bg-white/20 text-white" onClick={() => setShowVideo(true)}>
-              <Video className="mr-2 h-5 w-5" /> Apresentação Virtual
+            <Button size="lg" variant="outline" className="text-lg px-8 bg-black/20 backdrop-blur border-white/20 hover:bg-white/20 text-white" onClick={() => setShowVideo(true)}>
+              <Video className="mr-2 h-5 w-5" /> Videoconferência
             </Button>
           </div>
         </div>
