@@ -1,135 +1,116 @@
 "use client"
 
-import React, { useRef, useMemo } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Sphere, MeshDistortMaterial, Stars, OrbitControls } from '@react-three/drei'
-import * as THREE from 'three'
+import { useRef, useEffect, useState, useMemo } from "react"
+import { Canvas, useFrame, extend } from "@react-three/fiber"
+import { OrbitControls, useVideoTexture, ShaderMaterial } from "@react-three/drei"
+import * as THREE from "three"
 
 interface Avatar3DProps {
   speaking: boolean
 }
 
-function AnimatedCore({ speaking }: { speaking: boolean }) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      // Rotate constantly
-      meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.2
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.3
+// Custom Shader for Green Screen Removal (Chroma Key)
+const GreenScreenShaderMaterial = {
+  uniforms: {
+    map: { value: null },
+    keyColor: { value: new THREE.Color(0.0, 1.0, 0.0) },
+    similarity: { value: 0.4 },
+    smoothness: { value: 0.1 },
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform sampler2D map;
+    uniform vec3 keyColor;
+    uniform float similarity;
+    uniform float smoothness;
+    varying vec2 vUv;
+
+    void main() {
+      vec4 videoColor = texture2D(map, vUv);
       
-      // Pulse effect when speaking
+      float d = length(videoColor.rgb - keyColor.rgb);
+      float alpha = smoothstep(similarity, similarity + smoothness, d);
+      
+      gl_FragColor = vec4(videoColor.rgb, videoColor.a * alpha);
+    }
+  `
+}
+
+function VideoAvatar({ speaking }: { speaking: boolean }) {
+  const [videoUrl, setVideoUrl] = useState("/videos/avatar-talking.mp4")
+  
+  // Create video element manually to control playback
+  const video = useMemo(() => {
+    if (typeof document === 'undefined') return null;
+    const vid = document.createElement('video');
+    vid.src = videoUrl;
+    vid.crossOrigin = 'Anonymous';
+    vid.loop = true;
+    vid.muted = true; // Muted to not conflict with TTS
+    vid.playsInline = true;
+    return vid;
+  }, [videoUrl]);
+
+  // Use video texture
+  const texture = useVideoTexture(videoUrl, {
+    unsuspend: 'canvases',
+    muted: true,
+    loop: true,
+    start: false // We control start manually
+  })
+
+  // Create shader material
+  const shaderArgs = useMemo(() => ({
+    uniforms: {
+      map: { value: texture },
+      keyColor: { value: new THREE.Color(0.05, 0.6, 0.15) }, // Adjusted green for Mixkit video
+      similarity: { value: 0.25 },
+      smoothness: { value: 0.15 },
+    },
+    vertexShader: GreenScreenShaderMaterial.vertexShader,
+    fragmentShader: GreenScreenShaderMaterial.fragmentShader,
+    transparent: true,
+    side: THREE.DoubleSide
+  }), [texture])
+
+  // Control playback based on speaking prop
+  useEffect(() => {
+    if (texture && texture.image) {
+      const vid = texture.image as HTMLVideoElement;
       if (speaking) {
-        const scale = 1 + Math.sin(state.clock.getElapsedTime() * 10) * 0.1
-        meshRef.current.scale.set(scale, scale, scale)
-        // Color shift could be added here
+        vid.play().catch(e => console.log("Video play error:", e));
       } else {
-        meshRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1)
+        vid.pause();
       }
     }
-  })
+  }, [speaking, texture]);
 
   return (
-    <Sphere args={[1, 64, 64]} ref={meshRef}>
-      <MeshDistortMaterial
-        color={speaking ? "#4ade80" : "#22c55e"}
-        envMapIntensity={1}
-        clearcoat={1}
-        clearcoatRoughness={0}
-        metalness={0.5}
-        distort={speaking ? 0.6 : 0.3}
-        speed={speaking ? 4 : 2}
-      />
-    </Sphere>
-  )
-}
-
-function OuterRing({ speaking }: { speaking: boolean }) {
-  const ringRef = useRef<THREE.Mesh>(null)
-
-  useFrame((state) => {
-    if (ringRef.current) {
-      ringRef.current.rotation.z -= 0.01
-      ringRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.5) * 0.2
-      
-      if (speaking) {
-        ringRef.current.rotation.z -= 0.05
-      }
-    }
-  })
-
-  return (
-    <mesh ref={ringRef}>
-      <torusGeometry args={[1.8, 0.02, 16, 100]} />
-      <meshStandardMaterial 
-        color="#ffffff" 
-        emissive="#ffffff"
-        emissiveIntensity={0.5}
-        transparent
-        opacity={0.3}
-      />
+    <mesh position={[0, -0.5, 0]} scale={[1.6, 0.9, 1]}>
+      <planeGeometry args={[4, 4]} />
+      <shaderMaterial attach="material" args={[shaderArgs]} />
     </mesh>
-  )
-}
-
-function Particles({ count = 100 }) {
-  const points = useMemo(() => {
-    const p = new Float32Array(count * 3)
-    for (let i = 0; i < count; i++) {
-      const theta = Math.random() * Math.PI * 2
-      const phi = Math.acos(2 * Math.random() - 1)
-      const r = 2.5 + Math.random() * 0.5
-      
-      p[i * 3] = r * Math.sin(phi) * Math.cos(theta)
-      p[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
-      p[i * 3 + 2] = r * Math.cos(phi)
-    }
-    return p
-  }, [count])
-
-  const ref = useRef<THREE.Points>(null)
-  
-  useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.y = state.clock.getElapsedTime() * 0.05
-    }
-  })
-
-  return (
-    <points ref={ref}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={points.length / 3}
-          array={points}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.03}
-        color="#4ade80"
-        transparent
-        opacity={0.6}
-        sizeAttenuation
-      />
-    </points>
   )
 }
 
 export function Avatar3D({ speaking }: Avatar3DProps) {
   return (
     <div className="w-full h-full">
-      <Canvas camera={{ position: [0, 0, 4.5], fov: 50 }}>
-        <ambientLight intensity={0.5} />
+      <Canvas camera={{ position: [0, 0, 3.5], fov: 40 }}>
+        <ambientLight intensity={0.8} />
         <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight position={[-10, -10, -10]} color="#4ade80" intensity={0.5} />
         
-        <AnimatedCore speaking={speaking} />
-        <OuterRing speaking={speaking} />
-        <Particles count={200} />
+        <VideoAvatar speaking={speaking} />
         
-        {/* <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} /> */}
-        <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+        {/* Subtle background particles or atmosphere could be added here */}
+        
+        <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
       </Canvas>
     </div>
   )

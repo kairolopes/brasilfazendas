@@ -7,13 +7,14 @@ import Link from "next/link"
 
 import { useRef, useState } from "react"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { MarketWeatherWidget } from "@/components/presentation/market-weather-widget"
 
 export default function PresentationOverview() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const narrationText = "Olá. Seja bem-vindo à apresentação exclusiva da Cooperformoso. Sou sua assistente virtual e irei guiá-lo por esta jornada. Estamos prestes a conhecer um dos ativos mais valiosos do agronegócio brasileiro. Uma propriedade avaliada em quase um bilhão de reais, que não é apenas terra, mas um complexo agroindustrial consolidado. Prepare-se para ver números impressionantes, infraestrutura de ponta e um legado de sucesso. Utilize o menu lateral para navegar pelos capítulos detalhados deste dossiê."
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center">
+    <div className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
       {/* Video Background */}
       <div className="absolute inset-0 z-0 opacity-40">
         <video 
@@ -23,14 +24,14 @@ export default function PresentationOverview() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="https://videos.pexels.com/video-files/2048386/2048386-hd_1920_1080_24fps.mp4" type="video/mp4" />
+          <source src="/videos/background-intro.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
       </div>
 
       <VirtualNarrator text={narrationText} />
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto w-full pt-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,10 +43,20 @@ export default function PresentationOverview() {
           <h1 className="text-5xl md:text-8xl font-serif font-bold text-white mb-6 tracking-tight">
             COOPERFORMOSO
           </h1>
-          <p className="text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl mx-auto mb-12">
+          <p className="text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl mx-auto mb-8">
             O coração do agronegócio no Tocantins. 
             <span className="block mt-2 font-normal text-white">Um legado de 1 bilhão de reais.</span>
           </p>
+        </motion.div>
+
+        {/* Market Widget - Novo MCP Simulado */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="max-w-4xl mx-auto mb-10"
+        >
+          <MarketWeatherWidget />
         </motion.div>
 
         <motion.div
