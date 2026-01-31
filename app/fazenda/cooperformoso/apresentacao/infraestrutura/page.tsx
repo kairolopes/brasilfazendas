@@ -83,11 +83,15 @@ export default function InfraestruturaPage() {
               </ul>
             </div>
             <div className="flex-1 w-full h-[300px] rounded-xl overflow-hidden bg-slate-800">
-               {/* Placeholder for Agrovila Image */}
+               {/* Agrovila Image - Local Asset */}
                <img 
-                 src="https://images.unsplash.com/photo-1532629345422-7515f3d16335?q=80&w=800" 
-                 alt="Silos e Armazéns" 
+                 src="/images/agrovila.jpg" 
+                 alt="Silos e Armazéns da Agrovila" 
                  className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+                 onError={(e) => {
+                   e.currentTarget.src = "https://placehold.co/800x600?text=Agrovila+Cooperformoso";
+                   e.currentTarget.onerror = null; // Prevent infinite loop
+                 }}
                />
             </div>
           </div>
