@@ -90,6 +90,29 @@ export default function DataRoomPage() {
 
   const narrationText = "A transparência é fundamental em negociações desta magnitude. Por isso, organizamos este Data Room virtual com acesso a toda a documentação da Cooperformoso. Aqui você encontra desde as matrículas atualizadas e certificadas, até as licenças ambientais, outorgas de água e relatórios técnicos de produtividade. São mais de 100 documentos indexados e auditados, garantindo segurança jurídica total para a transação. Utilize os filtros para localizar documentos específicos ou faça o download do dossiê completo."
 
+  const handleDownload = (doc: any) => {
+    // Check if it's one of the real documents we have available
+    if (doc.id === 'DOC-001' || doc.id === 'DOC-002' || doc.name.includes('Inteiro Teor')) {
+      const link = document.createElement('a')
+      link.href = '/documents/certidao inteiro teor 10-12-2025.pdf'
+      link.download = doc.name + '.pdf'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    } else {
+      // Simulation for other documents
+      alert(`Simulação: O download do arquivo "${doc.name}" foi iniciado. Em um ambiente de produção, este arquivo seria baixado do servidor seguro.`)
+    }
+  }
+
+  const handleView = (doc: any) => {
+    if (doc.id === 'DOC-001' || doc.id === 'DOC-002' || doc.name.includes('Inteiro Teor')) {
+      window.open('/documents/certidao inteiro teor 10-12-2025.pdf', '_blank')
+    } else {
+      alert(`Simulação: Visualização do arquivo "${doc.name}".`)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-12">
       <VirtualNarrator text={narrationText} />
@@ -202,10 +225,10 @@ export default function DataRoomPage() {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                        <Button size="sm" variant="ghost" className="h-8 w-8 p-0" onClick={() => handleView(doc)}>
                           <Eye className="w-4 h-4 text-slate-500 hover:text-primary" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                        <Button size="sm" variant="ghost" className="h-8 w-8 p-0" onClick={() => handleDownload(doc)}>
                           <Download className="w-4 h-4 text-slate-500 hover:text-primary" />
                         </Button>
                       </div>

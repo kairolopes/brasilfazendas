@@ -5,9 +5,11 @@ import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { ArrowRight, PlayCircle } from "lucide-react"
 import Link from "next/link"
 
+import { useRef, useState } from "react"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 export default function PresentationOverview() {
+  const videoRef = useRef<HTMLVideoElement>(null)
   const narrationText = "Olá. Seja bem-vindo à apresentação exclusiva da Cooperformoso. Sou sua assistente virtual e irei guiá-lo por esta jornada. Estamos prestes a conhecer um dos ativos mais valiosos do agronegócio brasileiro. Uma propriedade avaliada em quase um bilhão de reais, que não é apenas terra, mas um complexo agroindustrial consolidado. Prepare-se para ver números impressionantes, infraestrutura de ponta e um legado de sucesso. Utilize o menu lateral para navegar pelos capítulos detalhados deste dossiê."
 
   return (
@@ -70,11 +72,27 @@ export default function PresentationOverview() {
                 </span>
               </button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl w-full p-0 bg-black border-slate-800">
-              <div className="aspect-video w-full">
-                <video controls autoPlay className="w-full h-full rounded-lg">
+            <DialogContent className="max-w-5xl w-full p-0 bg-black border-slate-800 overflow-hidden shadow-2xl">
+              <div className="relative aspect-video w-full group/video">
+                <video 
+                  ref={videoRef}
+                  controls 
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full"
+                  poster="https://images.pexels.com/photos/2657858/pexels-photo-2657858.jpeg"
+                >
                   <source src="https://videos.pexels.com/video-files/2657858/2657858-hd_1920_1080_30fps.mp4" type="video/mp4" />
+                  Seu navegador não suporta a tag de vídeo.
                 </video>
+                
+                {/* Custom Play Overlay (disappears when playing if controls logic is handled, but native controls are safer) */}
+                <div 
+                  className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover/video:bg-black/10 transition-all pointer-events-none"
+                  style={{ display: 'none' }} // Hidden by default, relying on native controls + poster
+                >
+                   <PlayCircle className="w-20 h-20 text-white/80" />
+                </div>
               </div>
             </DialogContent>
           </Dialog>
