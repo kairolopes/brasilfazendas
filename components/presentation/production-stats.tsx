@@ -54,7 +54,7 @@ export function ProductionStats() {
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #e2e8f0' }}
                   itemStyle={{ color: '#0f172a', fontWeight: 600 }}
-                  formatter={(value: number) => [`${value.toLocaleString('pt-BR')} ha`, 'Área']}
+                  formatter={(value: any) => [`${Number(value).toLocaleString('pt-BR')} ha`, 'Área']}
                 />
                 <Legend verticalAlign="bottom" height={36} iconType="circle" />
               </PieChart>
