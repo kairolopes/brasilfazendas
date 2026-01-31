@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,9 +13,15 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [isRegistering, setIsRegistering] = useState(false)
   const [name, setName] = useState("")
-  const { login, register } = useAuth()
+  const { login, register, user } = useAuth()
   const router = useRouter()
   const [error, setError] = useState("")
+
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard")
+    }
+  }, [user, router])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

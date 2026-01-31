@@ -44,10 +44,15 @@ export default function Dashboard() {
               <span className="bg-secondary text-secondary-foreground text-xs px-2 py-1 rounded">12.772 ha</span>
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col gap-2">
             <Link href="/fazenda/cooperformoso" className="w-full">
               <Button className="w-full group-hover:bg-primary/90">
-                Acessar Apresentação <ArrowRight className="ml-2 w-4 h-4" />
+                Ver Detalhes <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/fazenda/cooperformoso/apresentacao" className="w-full">
+              <Button variant="outline" className="w-full border-primary/20 hover:bg-primary/5 text-primary">
+                <Video className="mr-2 w-4 h-4" /> Apresentação Imersiva
               </Button>
             </Link>
           </CardFooter>
