@@ -49,9 +49,13 @@ export default function HistoriaPage() {
           >
             <div className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3" />
             <img 
-              src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?q=80&w=800" 
+              src="/images/historia.jpg" 
               alt="Histórico Agrícola" 
               className="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
+              onError={(e) => {
+                e.currentTarget.src = "https://placehold.co/800x600?text=Historia+Cooperformoso";
+                e.currentTarget.onerror = null;
+              }}
             />
             <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl max-w-xs">
               <p className="text-4xl font-bold text-primary font-serif">1979</p>

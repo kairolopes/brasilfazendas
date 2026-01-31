@@ -51,9 +51,13 @@ export default function LoginPage() {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/40 z-10" />
         <img 
-          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000" 
+          src="/images/login-bg.jpg" 
           alt="Fazenda Background" 
           className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = "https://placehold.co/1920x1080?text=Brasil+Fazendas";
+            e.currentTarget.onerror = null;
+          }}
         />
       </div>
 
