@@ -5,6 +5,8 @@ import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { ArrowRight, PlayCircle } from "lucide-react"
 import Link from "next/link"
 
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+
 export default function PresentationOverview() {
   const narrationText = "Olá. Seja bem-vindo à apresentação exclusiva da Cooperformoso. Sou sua assistente virtual e irei guiá-lo por esta jornada. Estamos prestes a conhecer um dos ativos mais valiosos do agronegócio brasileiro. Uma propriedade avaliada em quase um bilhão de reais, que não é apenas terra, mas um complexo agroindustrial consolidado. Prepare-se para ver números impressionantes, infraestrutura de ponta e um legado de sucesso. Utilize o menu lateral para navegar pelos capítulos detalhados deste dossiê."
 
@@ -59,12 +61,23 @@ export default function PresentationOverview() {
             </button>
           </Link>
 
-          <button className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
-            <PlayCircle className="w-12 h-12 stroke-1 group-hover:scale-110 transition-transform" />
-            <span className="text-left text-sm leading-tight">
-              Assista ao<br/>Teaser Oficial
-            </span>
-          </button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
+                <PlayCircle className="w-12 h-12 stroke-1 group-hover:scale-110 transition-transform" />
+                <span className="text-left text-sm leading-tight">
+                  Assista ao<br/>Teaser Oficial
+                </span>
+              </button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl w-full p-0 bg-black border-slate-800">
+              <div className="aspect-video w-full">
+                <video controls autoPlay className="w-full h-full rounded-lg">
+                  <source src="https://videos.pexels.com/video-files/2657858/2657858-hd_1920_1080_30fps.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </DialogContent>
+          </Dialog>
         </motion.div>
       </div>
 

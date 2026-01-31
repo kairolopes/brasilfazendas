@@ -14,7 +14,8 @@ import {
   Image as ImageIcon,
   ArrowLeft,
   Menu,
-  Database
+  Database,
+  FileText
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -29,6 +30,7 @@ const sidebarItems = [
   { icon: Scale, label: "Jurídico e Ambiental", href: "/fazenda/cooperformoso/apresentacao/juridico" },
   { icon: TrendingUp, label: "Inteligência de Mercado", href: "/fazenda/cooperformoso/apresentacao/mercado" },
   { icon: Database, label: "Centro de Inteligência (BI)", href: "/fazenda/cooperformoso/apresentacao/bi" },
+  { icon: FileText, label: "Data Room (Documentos)", href: "/fazenda/cooperformoso/apresentacao/dataroom" },
 ]
 
 export default function PresentationLayout({ children }: { children: React.ReactNode }) {
