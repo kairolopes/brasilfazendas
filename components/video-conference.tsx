@@ -40,10 +40,23 @@ export function VideoConference({ roomName = "CooperformosoPresentation" }: { ro
     return (
       <div className="bg-slate-900 rounded-lg p-12 text-center text-white">
         <h3 className="text-2xl font-bold mb-4">Sala de Apresentação Virtual</h3>
-        <p className="mb-8 text-slate-300">Inicie uma videoconferência segura para apresentar esta propriedade aos interessados.</p>
-        <Button onClick={() => setIsActive(true)} size="lg" className="bg-primary hover:bg-primary/90 text-white">
-          Iniciar Videoconferência
-        </Button>
+        <p className="mb-8 text-slate-300">Escolha a plataforma de sua preferência para apresentar esta propriedade.</p>
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <Button onClick={() => setIsActive(true)} size="lg" className="bg-primary hover:bg-primary/90 text-white">
+            Iniciar na Plataforma (Jitsi)
+          </Button>
+          <Button 
+            onClick={() => window.open('https://meet.google.com/new', '_blank')} 
+            size="lg" 
+            variant="outline"
+            className="bg-white text-slate-900 hover:bg-gray-100"
+          >
+            Abrir no Google Meet
+          </Button>
+        </div>
+        <p className="mt-4 text-xs text-slate-400">
+          Nota: O Google Meet será aberto em uma nova aba do navegador.
+        </p>
       </div>
     )
   }
