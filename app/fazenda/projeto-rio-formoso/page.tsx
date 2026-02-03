@@ -280,7 +280,7 @@ export default function ProjetoRioFormosoPage() {
                       <Download className="w-5 h-5 ml-auto text-muted-foreground group-hover:text-primary" />
                     </a>
 
-                    <a href="/documents/COOPERFORMOSO RESUMO.docx" target="_blank" className="group flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                    <a href="/documents/RESUMO_EXECUTIVO.docx" target="_blank" className="group flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50 transition-colors">
                       <div className="p-3 bg-blue-100 text-blue-600 rounded-lg group-hover:scale-110 transition-transform">
                         <FileText className="w-6 h-6" />
                       </div>
