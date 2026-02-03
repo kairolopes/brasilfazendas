@@ -59,7 +59,6 @@ function VideoAvatar({ speaking }: { speaking: boolean }) {
 
   // Use video texture
   const texture = useVideoTexture(videoUrl, {
-    unsuspend: 'canvases',
     muted: true,
     loop: true,
     start: false // We control start manually
