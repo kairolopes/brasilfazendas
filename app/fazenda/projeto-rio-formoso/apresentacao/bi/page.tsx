@@ -6,13 +6,13 @@ import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   BarChart,
   Bar,
@@ -28,15 +28,15 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis
 } from "recharts"
-import { 
-  TrendingUp, 
-  DollarSign, 
-  Sprout, 
-  Droplets, 
-  Sun, 
-  Wind, 
-  Activity, 
-  ArrowUpRight, 
+import {
+  TrendingUp,
+  DollarSign,
+  Sprout,
+  Droplets,
+  Sun,
+  Wind,
+  Activity,
+  ArrowUpRight,
   ArrowDownRight,
   Database
 } from "lucide-react"
@@ -94,7 +94,7 @@ export default function BusinessIntelligencePage() {
     setMounted(true)
   }, [])
 
-  const narrationText = "Bem-vindo ao centro de inteligência da Cooperformoso. Aqui, utilizamos análise de dados avançada para monitorar cada aspecto da operação em tempo real. Os gráficos demonstram uma curva de crescimento consistente na produtividade de arroz e soja nos últimos 7 anos. Nossa saúde financeira é robusta, com margens de lucro operacional acima da média de mercado. Além disso, monitoramos a qualidade do solo e o uso da terra com precisão satelital. Esta é a prova numérica da eficiência e do potencial de retorno deste investimento."
+  const narrationText = "Bem-vindo ao centro de inteligência do Projeto Rio Formoso. Aqui, utilizamos análise de dados avançada para monitorar cada aspecto da operação em tempo real. Os gráficos demonstram uma curva de crescimento consistente na produtividade de arroz e soja nos últimos 7 anos. Nossa saúde financeira é robusta, com margens de lucro operacional acima da média de mercado. Além disso, monitoramos a qualidade do solo e o uso da terra com precisão satelital. Esta é a prova numérica da eficiência e do potencial de retorno deste investimento."
 
   if (!mounted) return null
 
@@ -139,7 +139,7 @@ export default function BusinessIntelligencePage() {
               <h3 className="text-2xl font-bold text-slate-900">R$ 324.5M</h3>
             </CardContent>
           </Card>
-          
+
           <Card className="bg-white border-slate-200 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6">
               <div className="flex justify-between items-start mb-4">
@@ -207,18 +207,18 @@ export default function BusinessIntelligencePage() {
                     <AreaChart data={productionData}>
                       <defs>
                         <linearGradient id="colorArroz" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#16a34a" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#16a34a" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#16a34a" stopOpacity={0.8} />
+                          <stop offset="95%" stopColor="#16a34a" stopOpacity={0} />
                         </linearGradient>
                         <linearGradient id="colorSoja" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#eab308" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#eab308" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#eab308" stopOpacity={0.8} />
+                          <stop offset="95%" stopColor="#eab308" stopOpacity={0} />
                         </linearGradient>
                       </defs>
                       <XAxis dataKey="year" />
                       <YAxis />
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
-                      <Tooltip 
+                      <Tooltip
                         contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
                       />
                       <Area type="monotone" dataKey="arroz" stackId="1" stroke="#16a34a" fill="url(#colorArroz)" />
@@ -271,7 +271,7 @@ export default function BusinessIntelligencePage() {
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey="month" />
                     <YAxis />
-                    <Tooltip 
+                    <Tooltip
                       cursor={{ fill: '#f3f4f6' }}
                       contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
                     />
@@ -285,18 +285,18 @@ export default function BusinessIntelligencePage() {
           </TabsContent>
 
           <TabsContent value="production" className="space-y-6">
-             {/* Additional production details would go here */}
-             <Card className="shadow-lg border-none">
-                <CardHeader>
-                  <CardTitle>Produtividade Histórica</CardTitle>
-                </CardHeader>
-                <CardContent className="h-[400px] flex items-center justify-center text-slate-400">
-                  <p>Dados detalhados disponíveis no Data Room</p>
-                </CardContent>
-             </Card>
+            {/* Additional production details would go here */}
+            <Card className="shadow-lg border-none">
+              <CardHeader>
+                <CardTitle>Produtividade Histórica</CardTitle>
+              </CardHeader>
+              <CardContent className="h-[400px] flex items-center justify-center text-slate-400">
+                <p>Dados detalhados disponíveis no Data Room</p>
+              </CardContent>
+            </Card>
           </TabsContent>
 
-           <TabsContent value="soil" className="space-y-6">
+          <TabsContent value="soil" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="shadow-lg border-none">
                 <CardHeader>
@@ -315,54 +315,54 @@ export default function BusinessIntelligencePage() {
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
-              
+
               <Card className="shadow-lg border-none bg-slate-900 text-white">
                 <CardHeader>
                   <CardTitle className="text-white">Sensores IoT</CardTitle>
                   <CardDescription className="text-slate-400">Monitoramento em Tempo Real</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                   <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                      <div className="flex items-center gap-3">
-                        <Droplets className="text-blue-400" />
-                        <div>
-                          <p className="font-medium">Umidade do Solo</p>
-                          <p className="text-xs text-slate-400">Talhão 04 - Pivô Central</p>
-                        </div>
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <div className="flex items-center gap-3">
+                      <Droplets className="text-blue-400" />
+                      <div>
+                        <p className="font-medium">Umidade do Solo</p>
+                        <p className="text-xs text-slate-400">Talhão 04 - Pivô Central</p>
                       </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-blue-400">24%</p>
-                        <p className="text-xs text-green-400">Ideal</p>
-                      </div>
-                   </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-bold text-blue-400">24%</p>
+                      <p className="text-xs text-green-400">Ideal</p>
+                    </div>
+                  </div>
 
-                   <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                      <div className="flex items-center gap-3">
-                        <Sun className="text-amber-400" />
-                        <div>
-                          <p className="font-medium">Radiação Solar</p>
-                          <p className="text-xs text-slate-400">Estação Meteorológica 01</p>
-                        </div>
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <div className="flex items-center gap-3">
+                      <Sun className="text-amber-400" />
+                      <div>
+                        <p className="font-medium">Radiação Solar</p>
+                        <p className="text-xs text-slate-400">Estação Meteorológica 01</p>
                       </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-amber-400">850</p>
-                        <p className="text-xs text-slate-400">W/m²</p>
-                      </div>
-                   </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-bold text-amber-400">850</p>
+                      <p className="text-xs text-slate-400">W/m²</p>
+                    </div>
+                  </div>
 
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <Wind className="text-slate-400" />
-                        <div>
-                          <p className="font-medium">Velocidade do Vento</p>
-                          <p className="text-xs text-slate-400">Direção NE</p>
-                        </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Wind className="text-slate-400" />
+                      <div>
+                        <p className="font-medium">Velocidade do Vento</p>
+                        <p className="text-xs text-slate-400">Direção NE</p>
                       </div>
-                      <div className="text-right">
-                        <p className="text-2xl font-bold text-white">12</p>
-                        <p className="text-xs text-slate-400">km/h</p>
-                      </div>
-                   </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-bold text-white">12</p>
+                      <p className="text-xs text-slate-400">km/h</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>

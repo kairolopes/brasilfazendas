@@ -15,7 +15,7 @@ const riceData = [
 ]
 
 export default function MercadoPage() {
-  const narrationText = "O cenário de mercado para a Cooperformoso é extremamente promissor. O mundo clama por alimentos, e o arroz é base da dieta global. Nos últimos 5 anos, observamos uma valorização consistente da saca de arroz no mercado interno e externo, impulsionada pela demanda asiática e africana. Além disso, a região do Formoso do Araguaia consolidou-se como o segundo maior polo produtor do Brasil, atraindo indústrias de beneficiamento e trading companies. A inauguração recente da ponte sobre o Rio Araguaia e a pavimentação de novas rodovias reduziram o custo logístico em 15%, aumentando a margem líquida do produtor. Estamos posicionados no lugar certo, na hora certa."
+  const narrationText = "O cenário de mercado para o Projeto Rio Formoso é extremamente promissor. O mundo clama por alimentos, e o arroz é base da dieta global. Nos últimos 5 anos, observamos uma valorização consistente da saca de arroz no mercado interno e externo, impulsionada pela demanda asiática e africana. Além disso, a região do Formoso do Araguaia consolidou-se como o segundo maior polo produtor do Brasil, atraindo indústrias de beneficiamento e trading companies. A inauguração recente da ponte sobre o Rio Araguaia e a pavimentação de novas rodovias reduziram o custo logístico em 15%, aumentando a margem líquida do produtor. Estamos posicionados no lugar certo, na hora certa."
 
   return (
     <div className="min-h-screen bg-white p-8 md:p-16">
@@ -35,7 +35,7 @@ export default function MercadoPage() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0, duration: 0.5 }}
@@ -52,7 +52,7 @@ export default function MercadoPage() {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -69,7 +69,7 @@ export default function MercadoPage() {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -103,24 +103,24 @@ export default function MercadoPage() {
               <AreaChart data={riceData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#16a34a" stopOpacity={0.2}/>
-                    <stop offset="95%" stopColor="#16a34a" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#16a34a" stopOpacity={0.2} />
+                    <stop offset="95%" stopColor="#16a34a" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="year" />
                 <YAxis unit=" R$" />
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                   formatter={(value: any) => [`R$ ${value},00`, 'Preço Médio']}
                 />
-                <Area 
-                  type="monotone" 
-                  dataKey="price" 
-                  stroke="#16a34a" 
+                <Area
+                  type="monotone"
+                  dataKey="price"
+                  stroke="#16a34a"
                   strokeWidth={3}
-                  fillOpacity={1} 
-                  fill="url(#colorPrice)" 
+                  fillOpacity={1}
+                  fill="url(#colorPrice)"
                 />
               </AreaChart>
             </ResponsiveContainer>

@@ -2,19 +2,19 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { 
-  Network, 
-  Workflow, 
-  Sprout, 
-  Tractor, 
-  Factory, 
-  Truck, 
-  DollarSign, 
-  Recycle, 
-  Sun, 
-  CloudRain, 
-  Droplets, 
-  Trees, 
+import {
+  Network,
+  Workflow,
+  Sprout,
+  Tractor,
+  Factory,
+  Truck,
+  DollarSign,
+  Recycle,
+  Sun,
+  CloudRain,
+  Droplets,
+  Trees,
   Leaf,
   ArrowRight,
   Database,
@@ -31,57 +31,57 @@ export default function FluxosPage() {
   const [activeTab, setActiveTab] = useState("produtivo")
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
 
-  const narrationText = "Nesta seção, detalhamos os processos que tornam a Cooperformoso uma referência em eficiência e sustentabilidade. No Ciclo Produtivo, você pode visualizar cada etapa, desde o planejamento agrícola de precisão até a logística de exportação. Apresentamos também nosso sistema de Integração Lavoura-Pecuária-Floresta, o ILPF, que maximiza o uso da terra com impacto ambiental positivo. Por fim, conheça nossa estrutura de governança corporativa, desenhada para garantir profissionalismo e transparência em todas as tomadas de decisão."
+  const narrationText = "Nesta seção, detalhamos os processos que tornam o Projeto Rio Formoso uma referência em eficiência e sustentabilidade. No Ciclo Produtivo, você pode visualizar cada etapa, desde o planejamento agrícola de precisão até a logística de exportação. Apresentamos também nosso sistema de Integração Lavoura-Pecuária-Floresta, o ILPF, que maximiza o uso da terra com impacto ambiental positivo. Por fim, conheça nossa estrutura de governança corporativa, desenhada para garantir profissionalismo e transparência em todas as tomadas de decisão."
 
   // Dados do Ciclo Produtivo
   const productionCycle = [
-    { 
-      id: "planejamento", 
-      title: "Planejamento Agrícola", 
-      icon: Target, 
-      color: "bg-blue-500", 
+    {
+      id: "planejamento",
+      title: "Planejamento Agrícola",
+      icon: Target,
+      color: "bg-blue-500",
       details: "Análise de solo, definição de cultivares, compra de insumos e cronograma de plantio baseado em dados climáticos históricos."
     },
-    { 
-      id: "preparo", 
-      title: "Preparo de Solo", 
-      icon: Tractor, 
-      color: "bg-amber-600", 
+    {
+      id: "preparo",
+      title: "Preparo de Solo",
+      icon: Tractor,
+      color: "bg-amber-600",
       details: "Correção de acidez, adubação de base e sistematização do terreno com uso de agricultura de precisão e piloto automático."
     },
-    { 
-      id: "plantio", 
-      title: "Plantio Monitorado", 
-      icon: Sprout, 
-      color: "bg-green-600", 
+    {
+      id: "plantio",
+      title: "Plantio Monitorado",
+      icon: Sprout,
+      color: "bg-green-600",
       details: "Semeadura com taxa variável, monitoramento de profundidade e distribuição de sementes em tempo real."
     },
-    { 
-      id: "manejo", 
-      title: "Manejo Cultural", 
-      icon: CloudRain, 
-      color: "bg-cyan-500", 
+    {
+      id: "manejo",
+      title: "Manejo Cultural",
+      icon: CloudRain,
+      color: "bg-cyan-500",
       details: "Controle de pragas e doenças via drone, irrigação controlada por sensores de umidade e aplicação de biológicos."
     },
-    { 
-      id: "colheita", 
-      title: "Colheita Digital", 
-      icon: Factory, 
-      color: "bg-yellow-500", 
+    {
+      id: "colheita",
+      title: "Colheita Digital",
+      icon: Factory,
+      color: "bg-yellow-500",
       details: "Mapeamento de produtividade, monitoramento de perdas e telemetria das máquinas em tempo real."
     },
-    { 
-      id: "beneficiamento", 
-      title: "Beneficiamento", 
-      icon: Recycle, 
-      color: "bg-orange-500", 
+    {
+      id: "beneficiamento",
+      title: "Beneficiamento",
+      icon: Recycle,
+      color: "bg-orange-500",
       details: "Limpeza, secagem e padronização dos grãos nas unidades de armazenamento próprias (Silos)."
     },
-    { 
-      id: "logistica", 
-      title: "Logística e Venda", 
-      icon: Truck, 
-      color: "bg-slate-700", 
+    {
+      id: "logistica",
+      title: "Logística e Venda",
+      icon: Truck,
+      color: "bg-slate-700",
       details: "Expedição para porto/mercado interno e hedge financeiro para maximização de lucros."
     }
   ]
@@ -132,7 +132,7 @@ export default function FluxosPage() {
       <div className="flex flex-col space-y-2">
         <h1 className="text-3xl font-bold tracking-tight text-slate-900">Mapas Mentais e Fluxos de Processo</h1>
         <p className="text-slate-500 text-lg">
-          Visualização técnica dos processos operacionais, ciclos produtivos e estrutura de gestão da Cooperformoso.
+          Visualização técnica dos processos operacionais, ciclos produtivos e estrutura de gestão do Projeto Rio Formoso.
         </p>
       </div>
 
@@ -157,13 +157,13 @@ export default function FluxosPage() {
               <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4 overflow-x-auto pb-8 md:pb-0 px-4">
                 {/* Linha conectora (Desktop) */}
                 <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-200 -z-10 hidden md:block transform -translate-y-1/2" />
-                
+
                 {productionCycle.map((stage, index) => {
                   const Icon = stage.icon
                   const isSelected = selectedNode === stage.id
-                  
+
                   return (
-                    <motion.div 
+                    <motion.div
                       key={stage.id}
                       className="flex flex-col items-center relative group min-w-[120px]"
                       whileHover={{ scale: 1.05 }}
@@ -176,7 +176,7 @@ export default function FluxosPage() {
                       `}>
                         <Icon className="h-8 w-8 text-white" />
                       </div>
-                      
+
                       <div className="mt-4 text-center">
                         <h3 className="font-bold text-sm text-slate-800">{stage.title}</h3>
                         <div className="flex justify-center mt-1">
@@ -215,7 +215,7 @@ export default function FluxosPage() {
                           <div>
                             <h3 className="text-xl font-bold text-slate-900 mb-2">{stage.title}</h3>
                             <p className="text-slate-600 leading-relaxed">{stage.details}</p>
-                            
+
                             <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
                               <Badge variant="secondary" className="justify-center py-1">Alta Tecnologia</Badge>
                               <Badge variant="secondary" className="justify-center py-1">Monitorado</Badge>
@@ -248,9 +248,9 @@ export default function FluxosPage() {
             <CardContent className="h-[500px] relative flex items-center justify-center">
               {/* Diagrama Circular Animado */}
               <div className="relative w-full max-w-2xl h-full flex items-center justify-center">
-                
+
                 {/* Círculo Central */}
-                <motion.div 
+                <motion.div
                   className="absolute z-10 w-40 h-40 bg-white rounded-full shadow-xl flex flex-col items-center justify-center border-4 border-emerald-500"
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
@@ -271,13 +271,13 @@ export default function FluxosPage() {
                   const radius = 140
                   const x = 200 + radius * Math.cos(angle) // Ajustado para centralizar no container de 400px (imaginário)
                   const y = 200 + radius * Math.sin(angle)
-                  
+
                   return (
                     <motion.div
                       key={item.id}
                       className="absolute w-64 p-4 bg-white rounded-xl shadow-lg border border-slate-100 flex flex-col items-center text-center cursor-pointer hover:shadow-xl transition-all"
-                      style={{ 
-                        left: `50%`, 
+                      style={{
+                        left: `50%`,
                         top: `50%`,
                         marginLeft: -128, // metade da largura (w-64 = 16rem = 256px -> 128px)
                         marginTop: -60,  // ajuste vertical aproximado
@@ -328,7 +328,7 @@ export default function FluxosPage() {
                 <div className="flex flex-wrap justify-center gap-8 relative w-full max-w-4xl">
                   {/* Linha horizontal conectora */}
                   <div className="absolute -top-8 left-1/4 right-1/4 h-8 border-t-2 border-l-2 border-r-2 border-slate-300 rounded-t-xl pointer-events-none" />
-                  
+
                   <div className="w-56 p-4 bg-white border-2 border-blue-100 rounded-xl shadow-sm text-center relative group hover:border-blue-500 transition-colors">
                     <Factory className="h-5 w-5 mx-auto mb-2 text-blue-600" />
                     <h4 className="font-bold text-slate-800">Diretoria de Operações</h4>

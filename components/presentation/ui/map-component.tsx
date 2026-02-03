@@ -41,10 +41,10 @@ export default function MapComponent() {
 
   return (
     <div className="w-full h-full relative z-0">
-      <MapContainer 
-        center={CENTER} 
-        zoom={ZOOM} 
-        scrollWheelZoom={true} 
+      <MapContainer
+        center={CENTER}
+        zoom={ZOOM}
+        scrollWheelZoom={true}
         className="w-full h-full"
         style={{ width: '100%', height: '100%' }}
       >
@@ -76,33 +76,33 @@ export default function MapComponent() {
         <Marker position={CENTER} icon={customIcon}>
           <Popup>
             <div className="text-center">
-              <strong className="text-lg">Cooperformoso</strong><br/>
-              Formoso do Araguaia - TO<br/>
+              <strong className="text-lg">Projeto Rio Formoso</strong><br />
+              Formoso do Araguaia - TO<br />
               <span className="text-xs text-slate-500">Sede Administrativa</span>
             </div>
           </Popup>
         </Marker>
 
-        <Circle 
-          center={CENTER} 
-          radius={5000} 
-          pathOptions={{ color: '#10b981', fillColor: '#10b981', fillOpacity: 0.2 }} 
+        <Circle
+          center={CENTER}
+          radius={5000}
+          pathOptions={{ color: '#10b981', fillColor: '#10b981', fillOpacity: 0.2 }}
         />
-        
+
         {/* BR-153 Aproximada (Exemplo Visual) */}
         {/* Na prática, usaria GeoJSON real, mas aqui apenas um marcador de referência */}
         <Marker position={[-11.6, -49.1]} icon={customIcon}>
-           <Popup>Acesso BR-153 (Logística)</Popup>
+          <Popup>Acesso BR-153 (Logística)</Popup>
         </Marker>
 
       </MapContainer>
-      
+
       {/* Legenda Flutuante */}
       <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow-lg z-[1000] text-slate-800 text-xs max-w-[200px]">
         <h4 className="font-bold mb-1">Legenda</h4>
         <div className="flex items-center gap-2 mb-1">
           <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-          <span>Sede Cooperformoso</span>
+          <span>Sede Projeto Rio Formoso</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-emerald-500/50 border border-emerald-500"></div>

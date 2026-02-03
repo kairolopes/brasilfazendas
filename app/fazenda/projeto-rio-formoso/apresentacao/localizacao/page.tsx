@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 // Dynamically import MapComponent to avoid SSR issues with Leaflet
 const MapComponent = dynamic(
   () => import('@/components/presentation/ui/map-component'),
-  { 
+  {
     ssr: false,
     loading: () => (
       <div className="w-full h-full bg-slate-800 flex items-center justify-center">
@@ -19,7 +19,7 @@ const MapComponent = dynamic(
 )
 
 export default function LocalizacaoPage() {
-  const narrationText = "A localização da Cooperformoso é um ativo estratégico por si só. Situada no município de Formoso do Araguaia, a propriedade está a apenas 12 quilômetros de acesso asfaltado e conectada às principais artérias logísticas do país. A fazenda integra o corredor da BR-153, a espinha dorsal do transporte rodoviário brasileiro, facilitando o escoamento tanto para os portos do Norte quanto para os mercados do Sul. Além disso, a proximidade de 45 quilômetros com a Ferrovia Norte-Sul coloca a produção em uma posição privilegiada para exportação. Estamos inseridos na região do MATOPIBA, a mais nova e dinâmica fronteira agrícola do Brasil, e próximos ao Vale do Araguaia, garantindo valorização constante da terra."
+  const narrationText = "A localização do Projeto Rio Formoso é um ativo estratégico por si só. Situada no município de Formoso do Araguaia, a propriedade está a apenas 12 quilômetros de acesso asfaltado e conectada às principais artérias logísticas do país. A fazenda integra o corredor da BR-153, a espinha dorsal do transporte rodoviário brasileiro, facilitando o escoamento tanto para os portos do Norte quanto para os mercados do Sul. Além disso, a proximidade de 45 quilômetros com a Ferrovia Norte-Sul coloca a produção em uma posição privilegiada para exportação. Estamos inseridos na região do MATOPIBA, a mais nova e dinâmica fronteira agrícola do Brasil, e próximos ao Vale do Araguaia, garantindo valorização constante da terra."
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-slate-950">
@@ -43,9 +43,9 @@ export default function LocalizacaoPage() {
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-8 text-white drop-shadow-lg">
               O Coração Logístico do Brasil
             </h1>
-            
+
             <div className="space-y-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -60,7 +60,7 @@ export default function LocalizacaoPage() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -75,7 +75,7 @@ export default function LocalizacaoPage() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -90,7 +90,7 @@ export default function LocalizacaoPage() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}

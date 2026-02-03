@@ -35,7 +35,7 @@ export function HeroSection() {
           transition={{ duration: 1.2, delay: 0.4 }}
           className="text-5xl md:text-8xl font-serif font-bold mb-6 tracking-tight"
         >
-          COOPERFORMOSO
+          PROJETO RIO FORMOSO
         </motion.h1>
 
         <motion.p

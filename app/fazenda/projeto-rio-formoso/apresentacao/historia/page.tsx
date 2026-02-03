@@ -5,12 +5,12 @@ import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { Card, CardContent } from "@/components/ui/card"
 
 export default function HistoriaPage() {
-  const narrationText = "A Cooperativa Agroindustrial Rio Formoso, conhecida como Cooperformoso, foi fundada em 1979 por um grupo visionário de agricultores do sul do Brasil. Instalada na Primeira Etapa do Projeto Rio Formoso, a cooperativa transformou a paisagem do Tocantins, sendo pioneira absoluta no plantio de arroz irrigado na região. Mais do que uma fazenda, a Cooperformoso é a gênese do polo agrícola do estado. Sua história é marcada pela inovação constante: foi aqui que se introduziu a técnica de sub-irrigação para o plantio de soja na entressafra, permitindo duas colheitas anuais de alto valor agregado e consolidando a região como um hub estratégico para sementes de soja de alta qualidade sanitária."
+  const narrationText = "A Cooperativa Agroindustrial Rio Formoso, agora Projeto Rio Formoso, foi fundada em 1979 por um grupo visionário de agricultores do sul do Brasil. Instalada na Primeira Etapa do Projeto Rio Formoso, a cooperativa transformou a paisagem do Tocantins, sendo pioneira absoluta no plantio de arroz irrigado na região. Mais do que uma fazenda, o Projeto Rio Formoso é a gênese do polo agrícola do estado. Sua história é marcada pela inovação constante: foi aqui que se introduziu a técnica de sub-irrigação para o plantio de soja na entressafra, permitindo duas colheitas anuais de alto valor agregado e consolidando a região como um hub estratégico para sementes de soja de alta qualidade sanitária."
 
   return (
     <div className="min-h-screen bg-white text-slate-900 p-8 md:p-16 relative overflow-hidden">
       <VirtualNarrator text={narrationText} />
-      
+
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,13 +31,13 @@ export default function HistoriaPage() {
             className="prose prose-lg text-slate-600"
           >
             <p className="lead text-xl text-slate-800 font-medium">
-              Fundada em 1979, a <span className="text-primary">COOPERFORMOSO</span> não é apenas uma propriedade rural; é um monumento histórico ao empreendedorismo agrícola.
+              Fundada em 1979, o <span className="text-primary">PROJETO RIO FORMOSO</span> não é apenas uma propriedade rural; é um monumento histórico ao empreendedorismo agrícola.
             </p>
             <p>
               Idealizada por agricultores pioneiros vindos do Sul do Brasil, a cooperativa se instalou na I Etapa do Projeto Rio Formoso com uma missão clara: provar que o cerrado tocantinense poderia alimentar o mundo.
             </p>
             <p>
-              Em mais de 40 anos de história, a Cooperformoso consolidou-se como a <strong>responsável direta pelo surgimento do polo agrícola</strong> de Formoso do Araguaia, hoje o segundo maior produtor de arroz do estado.
+              Em mais de 40 anos de história, o Projeto Rio Formoso consolidou-se como a <strong>responsável direta pelo surgimento do polo agrícola</strong> de Formoso do Araguaia, hoje o segundo maior produtor de arroz do estado.
             </p>
           </motion.div>
 
@@ -48,12 +48,12 @@ export default function HistoriaPage() {
             className="relative"
           >
             <div className="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3" />
-            <img 
-              src="/images/historia.jpg" 
-              alt="Histórico Agrícola" 
+            <img
+              src="/images/historia.jpg"
+              alt="Histórico Agrícola"
               className="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
               onError={(e) => {
-                e.currentTarget.src = "https://placehold.co/800x600?text=Historia+Cooperformoso";
+                e.currentTarget.src = "https://placehold.co/800x600?text=Historia+Projeto+Rio+Formoso";
                 e.currentTarget.onerror = null;
               }}
             />

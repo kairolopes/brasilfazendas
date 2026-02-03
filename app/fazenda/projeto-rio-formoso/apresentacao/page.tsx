@@ -11,16 +11,16 @@ import { MarketWeatherWidget } from "@/components/presentation/market-weather-wi
 
 export default function PresentationOverview() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const narrationText = "Olá. Seja bem-vindo à apresentação exclusiva da Cooperformoso. Sou sua assistente virtual e irei guiá-lo por esta jornada. Estamos prestes a conhecer um dos ativos mais valiosos do agronegócio brasileiro. Uma propriedade avaliada em quase um bilhão de reais, que não é apenas terra, mas um complexo agroindustrial consolidado. Prepare-se para ver números impressionantes, infraestrutura de ponta e um legado de sucesso. Utilize o menu lateral para navegar pelos capítulos detalhados deste dossiê."
+  const narrationText = "Olá. Seja bem-vindo à apresentação exclusiva do Projeto Rio Formoso. Sou sua assistente virtual e irei guiá-lo por esta jornada. Estamos prestes a conhecer um dos ativos mais valiosos do agronegócio brasileiro. Uma propriedade avaliada em quase um bilhão de reais, que não é apenas terra, mas um complexo agroindustrial consolidado. Prepare-se para ver números impressionantes, infraestrutura de ponta e um legado de sucesso. Utilize o menu lateral para navegar pelos capítulos detalhados deste dossiê."
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
       {/* Video Background */}
       <div className="absolute inset-0 z-0 opacity-40">
-        <video 
-          autoPlay 
-          loop 
-          muted 
+        <video
+          autoPlay
+          loop
+          muted
           playsInline
           className="w-full h-full object-cover"
         >
@@ -41,10 +41,10 @@ export default function PresentationOverview() {
             OPORTUNIDADE EXCLUSIVA
           </div>
           <h1 className="text-5xl md:text-8xl font-serif font-bold text-white mb-6 tracking-tight">
-            COOPERFORMOSO
+            PROJETO RIO FORMOSO
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl mx-auto mb-8">
-            O coração do agronegócio no Tocantins. 
+            O coração do agronegócio no Tocantins.
             <span className="block mt-2 font-normal text-white">Um legado de 1 bilhão de reais.</span>
           </p>
         </motion.div>
@@ -65,7 +65,7 @@ export default function PresentationOverview() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-col md:flex-row items-center justify-center gap-6"
         >
-          <Link href="/fazenda/cooperformoso/apresentacao/historia">
+          <Link href="/fazenda/projeto-rio-formoso/apresentacao/historia">
             <button className="group relative px-8 py-4 bg-primary text-white text-lg font-bold rounded-full overflow-hidden shadow-[0_0_40px_rgba(22,163,74,0.4)] hover:shadow-[0_0_60px_rgba(22,163,74,0.6)] transition-all duration-300">
               <span className="relative z-10 flex items-center gap-3">
                 Iniciar Apresentação <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -79,15 +79,15 @@ export default function PresentationOverview() {
               <button className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
                 <PlayCircle className="w-12 h-12 stroke-1 group-hover:scale-110 transition-transform" />
                 <span className="text-left text-sm leading-tight">
-                  Assista ao<br/>Teaser Oficial
+                  Assista ao<br />Teaser Oficial
                 </span>
               </button>
             </DialogTrigger>
             <DialogContent className="max-w-5xl w-full p-0 bg-black border-slate-800 overflow-hidden shadow-2xl">
               <div className="relative aspect-video w-full group/video">
-                <video 
+                <video
                   ref={videoRef}
-                  controls 
+                  controls
                   autoPlay
                   playsInline
                   preload="auto"
@@ -97,13 +97,13 @@ export default function PresentationOverview() {
                   <source src="/fazenda-video.mp4" type="video/mp4" />
                   Seu navegador não suporta a tag de vídeo.
                 </video>
-                
+
                 {/* Custom Play Overlay (disappears when playing if controls logic is handled, but native controls are safer) */}
-                <div 
+                <div
                   className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover/video:bg-black/10 transition-all pointer-events-none"
                   style={{ display: 'none' }} // Hidden by default, relying on native controls + poster
                 >
-                   <PlayCircle className="w-20 h-20 text-white/80" />
+                  <PlayCircle className="w-20 h-20 text-white/80" />
                 </div>
               </div>
             </DialogContent>
@@ -112,7 +112,7 @@ export default function PresentationOverview() {
       </div>
 
       {/* Footer Stats */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8 }}

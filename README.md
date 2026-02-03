@@ -1,6 +1,6 @@
 # Brasil Fazendas Platform
 
-Plataforma de apresentação da Fazenda Cooperformoso, desenvolvida com Next.js, Shadcn/UI e Tailwind CSS.
+Plataforma de apresentação da Fazenda Projeto Rio Formoso, desenvolvida com Next.js, Shadcn/UI e Tailwind CSS.
 
 ## Funcionalidades
 

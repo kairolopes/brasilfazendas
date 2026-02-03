@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Download, MapPin, Calendar, CheckCircle2, AreaChart, Droplets, Sun, Warehouse, Video, Sprout, Truck, ShieldCheck, FileText, PlayCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 
-export default function CooperformosoPage() {
+export default function ProjetoRioFormosoPage() {
   const [showVideo, setShowVideo] = useState(false)
   const router = useRouter()
 
@@ -17,23 +17,23 @@ export default function CooperformosoPage() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative h-[80vh] w-full overflow-hidden">
-        <video 
-          autoPlay 
-          muted 
-          loop 
+        <video
+          autoPlay
+          muted
+          loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/fazenda-video.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-        
+
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 text-white max-w-7xl mx-auto">
           <Badge className="mb-4 bg-primary text-white hover:bg-primary/90 text-lg px-4 py-1">
             Oportunidade Premium
           </Badge>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            Cooperformoso
+            Projeto Rio Formoso
           </h1>
           <div className="flex flex-col md:flex-row gap-6 md:items-center text-lg md:text-xl text-gray-200 mb-8">
             <span className="flex items-center gap-2">
@@ -49,7 +49,7 @@ export default function CooperformosoPage() {
             </span>
           </div>
           <div className="flex gap-4 flex-wrap">
-            <Button size="lg" className="text-lg px-8 bg-white text-slate-900 hover:bg-gray-100" onClick={() => router.push('/fazenda/cooperformoso/apresentacao')}>
+            <Button size="lg" className="text-lg px-8 bg-white text-slate-900 hover:bg-gray-100" onClick={() => router.push('/fazenda/projeto-rio-formoso/apresentacao')}>
               <PlayCircle className="mr-2 h-5 w-5" /> Modo Apresentação
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 bg-black/20 backdrop-blur border-white/20 hover:bg-white/20 text-white" onClick={() => setShowVideo(true)}>
@@ -62,22 +62,22 @@ export default function CooperformosoPage() {
       {/* Main Content */}
       <div id="details" className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          
+
           {/* Left Column - Main Info */}
           <div className="lg:col-span-2 space-y-12">
-            
+
             {/* Intro */}
             <section>
               <h2 className="text-3xl font-bold mb-6 text-primary">Sobre a Propriedade</h2>
               <div className="prose prose-lg text-muted-foreground">
                 <p className="mb-4">
-                  A <strong>Cooperativa Agroindustrial Rio Formoso (COOPERFORMOSO)</strong> é um marco no agronegócio brasileiro. Sediada na I Etapa do Projeto Rio Formoso, foi fundada em 1979 por agricultores pioneiros do Sul do Brasil.
+                  A <strong>Cooperativa Agroindustrial Rio Formoso (Projeto Rio Formoso)</strong> é um marco no agronegócio brasileiro. Sediada na I Etapa do Projeto Rio Formoso, foi fundada em 1979 por agricultores pioneiros do Sul do Brasil.
                 </p>
                 <p className="mb-4">
                   Esta propriedade não é apenas uma fazenda; é a <strong>responsável pelo surgimento do polo agrícola do Tocantins</strong>. Foi pioneira no plantio de arroz irrigado e a primeira a implementar soja irrigada na entressafra (maio/setembro) em todo o país.
                 </p>
                 <p>
-                  Hoje, Formoso do Araguaia responde pela maior área irrigada para produção de cereais da região Norte do Brasil, consolidando a Cooperformoso como um ativo de valor inestimável e alta produtividade.
+                  Hoje, Formoso do Araguaia responde pela maior área irrigada para produção de cereais da região Norte do Brasil, consolidando a Projeto Rio Formoso como um ativo de valor inestimável e alta produtividade.
                 </p>
               </div>
             </section>
@@ -141,7 +141,7 @@ export default function CooperformosoPage() {
                 <TabsTrigger value="log" className="py-3 px-6 text-base whitespace-nowrap">Logística</TabsTrigger>
                 <TabsTrigger value="doc" className="py-3 px-6 text-base whitespace-nowrap">Documentação</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="infra" className="mt-6 space-y-6">
                 <div className="bg-card rounded-lg border p-6">
                   <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
@@ -213,7 +213,7 @@ export default function CooperformosoPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-6">
                   <h4 className="font-semibold text-blue-800 mb-2">Diferencial Estratégico</h4>
                   <p className="text-blue-700 text-sm">
@@ -290,7 +290,7 @@ export default function CooperformosoPage() {
                       </div>
                       <Download className="w-5 h-5 ml-auto text-muted-foreground group-hover:text-primary" />
                     </a>
-                    
+
                     <div className="flex items-center gap-4 p-4 border rounded-lg opacity-60 bg-muted/20">
                       <div className="p-3 bg-gray-100 text-gray-500 rounded-lg">
                         <MapPin className="w-6 h-6" />
@@ -320,9 +320,9 @@ export default function CooperformosoPage() {
               <h3 className="text-2xl font-bold mb-6">Galeria de Imagens</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-[500px]">
                 <div className="col-span-2 row-span-2 relative rounded-xl overflow-hidden group">
-                  <img 
-                    src="https://images.unsplash.com/photo-1530507629858-e4977d30e9e0?q=80&w=1600" 
-                    alt="Plantação Arroz" 
+                  <img
+                    src="https://images.unsplash.com/photo-1530507629858-e4977d30e9e0?q=80&w=1600"
+                    alt="Plantação Arroz"
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
@@ -330,16 +330,16 @@ export default function CooperformosoPage() {
                   </div>
                 </div>
                 <div className="relative rounded-xl overflow-hidden group">
-                  <img 
-                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=800" 
-                    alt="Vista Aérea" 
+                  <img
+                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=800"
+                    alt="Vista Aérea"
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="relative rounded-xl overflow-hidden group">
-                  <img 
-                    src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?q=80&w=800" 
-                    alt="Maquinário" 
+                  <img
+                    src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?q=80&w=800"
+                    alt="Maquinário"
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -352,13 +352,13 @@ export default function CooperformosoPage() {
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
               {showVideo ? (
-                 <VideoConference roomName="Cooperformoso" />
+                <VideoConference roomName="ProjetoRioFormoso" />
               ) : (
                 <Card className="border-primary/20 shadow-xl">
                   <CardHeader className="bg-primary/5 border-b border-primary/10">
                     <CardContent className="pt-6 pb-2 text-center">
-                       <h3 className="text-lg font-semibold text-primary mb-1">Interessado na Propriedade?</h3>
-                       <p className="text-sm text-muted-foreground">Inicie uma apresentação ao vivo agora.</p>
+                      <h3 className="text-lg font-semibold text-primary mb-1">Interessado na Propriedade?</h3>
+                      <p className="text-sm text-muted-foreground">Inicie uma apresentação ao vivo agora.</p>
                     </CardContent>
                   </CardHeader>
                   <CardContent className="p-6 space-y-4">

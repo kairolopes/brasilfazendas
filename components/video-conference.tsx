@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Button } from "./ui/button"
 
-export function VideoConference({ roomName = "CooperformosoPresentation" }: { roomName?: string }) {
+export function VideoConference({ roomName = "ProjetoRioFormosoPresentation" }: { roomName?: string }) {
   const [isActive, setIsActive] = useState(false)
   const jitsiContainerRef = useRef<HTMLDivElement>(null)
 
@@ -45,9 +45,9 @@ export function VideoConference({ roomName = "CooperformosoPresentation" }: { ro
           <Button onClick={() => setIsActive(true)} size="lg" className="w-full bg-primary hover:bg-primary/90 text-white">
             Iniciar na Plataforma (Jitsi)
           </Button>
-          <Button 
-            onClick={() => window.open('https://meet.google.com/new', '_blank')} 
-            size="lg" 
+          <Button
+            onClick={() => window.open('https://meet.google.com/new', '_blank')}
+            size="lg"
             variant="outline"
             className="w-full bg-white text-slate-900 hover:bg-gray-100"
           >
@@ -64,9 +64,9 @@ export function VideoConference({ roomName = "CooperformosoPresentation" }: { ro
   return (
     <div className="w-full bg-black rounded-lg overflow-hidden relative">
       <div ref={jitsiContainerRef} className="w-full" />
-      <Button 
-        onClick={() => setIsActive(false)} 
-        variant="destructive" 
+      <Button
+        onClick={() => setIsActive(false)}
+        variant="destructive"
         className="absolute top-4 right-4 z-10"
       >
         Encerrar

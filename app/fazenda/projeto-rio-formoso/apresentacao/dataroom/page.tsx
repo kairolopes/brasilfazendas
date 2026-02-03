@@ -7,13 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { 
-  FileText, 
-  Search, 
-  Download, 
-  Eye, 
-  ShieldCheck, 
-  Lock, 
+import {
+  FileText,
+  Search,
+  Download,
+  Eye,
+  ShieldCheck,
+  Lock,
   FileCheck,
   Calendar,
   Filter
@@ -35,22 +35,22 @@ const documents = [
   { id: 'DOC-003', name: 'Certidão de Ônus Reais - Gleba A', category: 'legal', date: '15/12/2025', size: '1.8 MB', status: 'Negativa' },
   { id: 'DOC-004', name: 'CCIR 2024/2025 - Quitad', category: 'legal', date: '02/01/2025', size: '1.2 MB', status: 'Vigente' },
   { id: 'DOC-005', name: 'ITR 2024 - Comprovante de Pagamento', category: 'legal', date: '30/09/2024', size: '0.8 MB', status: 'Pago' },
-  { id: 'DOC-006', name: 'Contrato Social Consolidado - Cooperformoso', category: 'legal', date: '10/06/2023', size: '4.5 MB', status: 'Vigente' },
+  { id: 'DOC-006', name: 'Contrato Social Consolidado - Projeto Rio Formoso', category: 'legal', date: '10/06/2023', size: '4.5 MB', status: 'Vigente' },
   { id: 'DOC-007', name: 'Ata de Assembleia - Eleição Diretoria', category: 'legal', date: '15/06/2023', size: '1.5 MB', status: 'Registrado' },
-  
+
   // Ambiental
   { id: 'DOC-020', name: 'CAR - Cadastro Ambiental Rural (Recibo)', category: 'env', date: '20/01/2025', size: '3.2 MB', status: 'Ativo' },
   { id: 'DOC-021', name: 'Licença de Operação (LO) - Silos', category: 'env', date: '12/08/2024', size: '5.1 MB', status: 'Vigente' },
   { id: 'DOC-022', name: 'Outorga de Uso de Água - Rio Formoso', category: 'env', date: '10/06/2024', size: '2.9 MB', status: 'Deferido' },
   { id: 'DOC-023', name: 'Plano de Manejo Florestal Sustentável', category: 'env', date: '05/03/2024', size: '12.5 MB', status: 'Aprovado' },
-  
+
   // Técnico
   { id: 'DOC-040', name: 'Análise de Solo - Talhão 01 a 10', category: 'tech', date: '15/11/2025', size: '8.4 MB', status: 'Recente' },
   { id: 'DOC-041', name: 'Análise de Solo - Talhão 11 a 20', category: 'tech', date: '15/11/2025', size: '8.2 MB', status: 'Recente' },
   { id: 'DOC-042', name: 'Relatório de Produtividade Safra 23/24', category: 'tech', date: '30/08/2024', size: '15.1 MB', status: 'Finalizado' },
   { id: 'DOC-043', name: 'Inventário de Máquinas e Equipamentos', category: 'tech', date: '01/12/2025', size: '4.2 MB', status: 'Auditado' },
   { id: 'DOC-044', name: 'Laudo de Avaliação Patrimonial (Valuation)', category: 'tech', date: '01/01/2026', size: '45.0 MB', status: 'Confidencial' },
-  
+
   // More items to simulate volume...
   ...Array.from({ length: 15 }).map((_, i) => ({
     id: `DOC-1${i.toString().padStart(2, '0')}`,
@@ -81,14 +81,14 @@ const documents = [
 export default function DataRoomPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
-  
+
   const filteredDocs = documents.filter(doc => {
     const matchesSearch = doc.name.toLowerCase().includes(searchTerm.toLowerCase()) || doc.id.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesCategory = selectedCategory === "all" || doc.category === selectedCategory
     return matchesSearch && matchesCategory
   })
 
-  const narrationText = "A transparência é fundamental em negociações desta magnitude. Por isso, organizamos este Data Room virtual com acesso a toda a documentação da Cooperformoso. Aqui você encontra desde as matrículas atualizadas e certificadas, até as licenças ambientais, outorgas de água e relatórios técnicos de produtividade. São mais de 100 documentos indexados e auditados, garantindo segurança jurídica total para a transação. Utilize os filtros para localizar documentos específicos ou faça o download do dossiê completo."
+  const narrationText = "A transparência é fundamental em negociações desta magnitude. Por isso, organizamos este Data Room virtual com acesso a toda a documentação do Projeto Rio Formoso. Aqui você encontra desde as matrículas atualizadas e certificadas, até as licenças ambientais, outorgas de água e relatórios técnicos de produtividade. São mais de 100 documentos indexados e auditados, garantindo segurança jurídica total para a transação. Utilize os filtros para localizar documentos específicos ou faça o download do dossiê completo."
 
   const handleDownload = (doc: any) => {
     // For the demo, we'll download the real PDF we have for ALL documents, 
@@ -104,7 +104,7 @@ export default function DataRoomPage() {
   const handleDownloadAll = () => {
     const link = document.createElement('a')
     link.href = '/documents/certidao_inteiro_teor_2025.pdf'
-    link.download = 'Dossie_Completo_Cooperformoso_FULL_DATA_ROOM.pdf'
+    link.download = 'Dossie_Completo_ProjetoRioFormoso_FULL_DATA_ROOM.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -134,7 +134,7 @@ export default function DataRoomPage() {
             Data Room Virtual
           </h1>
           <p className="text-slate-600 max-w-3xl text-lg">
-            Repositório seguro de documentação técnica, jurídica e financeira. 
+            Repositório seguro de documentação técnica, jurídica e financeira.
             Todos os arquivos estão indexados e disponíveis para Due Diligence.
           </p>
         </motion.div>
@@ -145,11 +145,10 @@ export default function DataRoomPage() {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id === selectedCategory ? 'all' : cat.id)}
-              className={`p-4 rounded-xl border text-left transition-all ${
-                selectedCategory === cat.id 
-                  ? 'bg-slate-900 text-white border-slate-900 shadow-lg scale-105' 
+              className={`p-4 rounded-xl border text-left transition-all ${selectedCategory === cat.id
+                  ? 'bg-slate-900 text-white border-slate-900 shadow-lg scale-105'
                   : 'bg-white border-slate-200 text-slate-600 hover:border-slate-400 hover:shadow-md'
-              }`}
+                }`}
             >
               <div className="text-2xl font-bold mb-1">{cat.count}</div>
               <div className="text-xs uppercase tracking-wider opacity-80">{cat.name}</div>
@@ -161,8 +160,8 @@ export default function DataRoomPage() {
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <Input 
-              placeholder="Buscar por nome do documento, ID ou conteúdo..." 
+            <Input
+              placeholder="Buscar por nome do documento, ID ou conteúdo..."
               className="pl-10 bg-white border-slate-200 h-12 text-lg"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -171,8 +170,8 @@ export default function DataRoomPage() {
           <Button className="h-12 px-8 bg-slate-900 hover:bg-slate-800">
             <Filter className="w-4 h-4 mr-2" /> Filtros Avançados
           </Button>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="h-12 px-8 border-slate-200 hover:bg-slate-100 text-slate-700"
             onClick={handleDownloadAll}
           >
@@ -196,7 +195,7 @@ export default function DataRoomPage() {
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white">
                 {filteredDocs.map((doc, i) => (
-                  <motion.tr 
+                  <motion.tr
                     key={doc.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}

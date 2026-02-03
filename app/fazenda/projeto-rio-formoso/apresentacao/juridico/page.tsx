@@ -5,7 +5,7 @@ import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { ShieldCheck, FileText, CheckCircle2 } from "lucide-react"
 
 export default function JuridicoPage() {
-  const narrationText = "Segurança jurídica é o alicerce de qualquer grande investimento. A Cooperformoso destaca-se por ter 100% de sua área regularizada e livre de passivos. Com 30 anos de consolidação, todas as áreas de Reserva Legal e Preservação Permanente estão delimitadas e preservadas, garantindo conformidade total com o Código Florestal. Possuímos todas as outorgas de água vigentes para captação nos rios da região, um ativo cada vez mais valioso. A propriedade possui matrícula no Registro de Imóveis, CAR, CCIR e ITR em dia. Investir aqui é ter a certeza de um patrimônio blindado e transparente."
+  const narrationText = "Segurança jurídica é o alicerce de qualquer grande investimento. O Projeto Rio Formoso destaca-se por ter 100% de sua área regularizada e livre de passivos. Com 30 anos de consolidação, todas as áreas de Reserva Legal e Preservação Permanente estão delimitadas e preservadas, garantindo conformidade total com o Código Florestal. Possuímos todas as outorgas de água vigentes para captação nos rios da região, um ativo cada vez mais valioso. A propriedade possui matrícula no Registro de Imóveis, CAR, CCIR e ITR em dia. Investir aqui é ter a certeza de um patrimônio blindado e transparente."
 
   return (
     <div className="min-h-screen bg-slate-50 p-8 md:p-16">
@@ -78,18 +78,18 @@ export default function JuridicoPage() {
         </div>
 
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
-           className="bg-slate-900 text-white rounded-3xl p-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="bg-slate-900 text-white rounded-3xl p-12 text-center"
         >
           <h3 className="text-2xl font-bold mb-4">Due Diligence Ready</h3>
           <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
             Toda a documentação técnica, jurídica e fiscal está organizada em Data Room virtual, disponível para auditoria imediata por parte de investidores qualificados.
           </p>
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 rounded-full border border-white/20">
-             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-             <span className="text-sm font-semibold">Data Room Disponível</span>
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-sm font-semibold">Data Room Disponível</span>
           </div>
         </motion.div>
       </div>

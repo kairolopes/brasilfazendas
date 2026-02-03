@@ -5,7 +5,7 @@ import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { Zap, Droplets, Warehouse, Construction, LandPlot } from "lucide-react"
 
 export default function InfraestruturaPage() {
-  const narrationText = "A infraestrutura da Cooperformoso é um colosso de engenharia hidráulica e civil. Estamos falando de um sistema circulatório completo que dá vida a 12 mil hectares. São 115 quilômetros de canais principais e 206 quilômetros de canais secundários, garantindo que a água chegue onde precisa, quando precisa. Para a drenagem, contamos com 85 quilômetros de rede. A proteção contra cheias é assegurada por 165 quilômetros de diques robustos. A logística interna é fluida, com quase 400 quilômetros de estradas. Além disso, a propriedade possui uma rede elétrica trifásica de 60 quilômetros, uma Agrovila completa com armazéns, secadores e pista de pouso, tudo projetado para operação em escala industrial."
+  const narrationText = "A infraestrutura do Projeto Rio Formoso é um colosso de engenharia hidráulica e civil. Estamos falando de um sistema circulatório completo que dá vida a 12 mil hectares. São 115 quilômetros de canais principais e 206 quilômetros de canais secundários, garantindo que a água chegue onde precisa, quando precisa. Para a drenagem, contamos com 85 quilômetros de rede. A proteção contra cheias é assegurada por 165 quilômetros de diques robustos. A logística interna é fluida, com quase 400 quilômetros de estradas. Além disso, a propriedade possui uma rede elétrica trifásica de 60 quilômetros, uma Agrovila completa com armazéns, secadores e pista de pouso, tudo projetado para operação em escala industrial."
 
   const stats = [
     { icon: Droplets, value: "321 km", label: "Canais de Irrigação (115km Principal + 206km Secundário)", color: "text-blue-500" },
@@ -53,14 +53,14 @@ export default function InfraestruturaPage() {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mt-16 bg-slate-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          
+
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1">
               <h3 className="text-3xl font-serif font-bold mb-6">A Agrovila</h3>
@@ -83,16 +83,16 @@ export default function InfraestruturaPage() {
               </ul>
             </div>
             <div className="flex-1 w-full h-[300px] rounded-xl overflow-hidden bg-slate-800">
-               {/* Agrovila Image - Local Asset */}
-               <img 
-                 src="/images/agrovila.jpg" 
-                 alt="Silos e Armazéns da Agrovila" 
-                 className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
-                 onError={(e) => {
-                   e.currentTarget.src = "https://placehold.co/800x600?text=Agrovila+Cooperformoso";
-                   e.currentTarget.onerror = null; // Prevent infinite loop
-                 }}
-               />
+              {/* Agrovila Image - Local Asset */}
+              <img
+                src="/images/agrovila.jpg"
+                alt="Silos e Armazéns da Agrovila"
+                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+                onError={(e) => {
+                  e.currentTarget.src = "https://placehold.co/800x600?text=Agrovila+Projeto+Rio+Formoso";
+                  e.currentTarget.onerror = null; // Prevent infinite loop
+                }}
+              />
             </div>
           </div>
         </motion.div>

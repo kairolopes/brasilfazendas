@@ -3,14 +3,14 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { 
-  LayoutDashboard, 
-  History, 
-  Map as MapIcon, 
-  Warehouse, 
-  Sprout, 
-  Scale, 
-  TrendingUp, 
+import {
+  LayoutDashboard,
+  History,
+  Map as MapIcon,
+  Warehouse,
+  Sprout,
+  Scale,
+  TrendingUp,
   Image as ImageIcon,
   ArrowLeft,
   Menu,
@@ -23,16 +23,16 @@ import { useState } from "react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const sidebarItems = [
-  { icon: LayoutDashboard, label: "Visão Geral", href: "/fazenda/cooperformoso/apresentacao" },
-  { icon: History, label: "História e Legado", href: "/fazenda/cooperformoso/apresentacao/historia" },
-  { icon: MapIcon, label: "Localização", href: "/fazenda/cooperformoso/apresentacao/localizacao" },
-  { icon: Warehouse, label: "Infraestrutura", href: "/fazenda/cooperformoso/apresentacao/infraestrutura" },
-  { icon: Sprout, label: "Produção", href: "/fazenda/cooperformoso/apresentacao/producao" },
-  { icon: Workflow, label: "Processos e Fluxos", href: "/fazenda/cooperformoso/apresentacao/fluxos" },
-  { icon: Scale, label: "Jurídico e Ambiental", href: "/fazenda/cooperformoso/apresentacao/juridico" },
-  { icon: TrendingUp, label: "Inteligência de Mercado", href: "/fazenda/cooperformoso/apresentacao/mercado" },
-  { icon: Database, label: "Centro de Inteligência (BI)", href: "/fazenda/cooperformoso/apresentacao/bi" },
-  { icon: FileText, label: "Data Room (Documentos)", href: "/fazenda/cooperformoso/apresentacao/dataroom" },
+  { icon: LayoutDashboard, label: "Visão Geral", href: "/fazenda/projeto-rio-formoso/apresentacao" },
+  { icon: History, label: "História e Legado", href: "/fazenda/projeto-rio-formoso/apresentacao/historia" },
+  { icon: MapIcon, label: "Localização", href: "/fazenda/projeto-rio-formoso/apresentacao/localizacao" },
+  { icon: Warehouse, label: "Infraestrutura", href: "/fazenda/projeto-rio-formoso/apresentacao/infraestrutura" },
+  { icon: Sprout, label: "Produção", href: "/fazenda/projeto-rio-formoso/apresentacao/producao" },
+  { icon: Workflow, label: "Processos e Fluxos", href: "/fazenda/projeto-rio-formoso/apresentacao/fluxos" },
+  { icon: Scale, label: "Jurídico e Ambiental", href: "/fazenda/projeto-rio-formoso/apresentacao/juridico" },
+  { icon: TrendingUp, label: "Inteligência de Mercado", href: "/fazenda/projeto-rio-formoso/apresentacao/mercado" },
+  { icon: Database, label: "Centro de Inteligência (BI)", href: "/fazenda/projeto-rio-formoso/apresentacao/bi" },
+  { icon: FileText, label: "Data Room (Documentos)", href: "/fazenda/projeto-rio-formoso/apresentacao/dataroom" },
 ]
 
 export default function PresentationLayout({ children }: { children: React.ReactNode }) {
@@ -43,11 +43,11 @@ export default function PresentationLayout({ children }: { children: React.React
     <div className="flex flex-col h-full bg-slate-950 text-white border-r border-white/10">
       <div className="p-6">
         <h1 className="text-xl font-serif font-bold tracking-widest text-primary">
-          COOPERFORMOSO
+          PROJETO RIO FORMOSO
         </h1>
         <p className="text-xs text-slate-500 uppercase tracking-widest mt-1">Dossiê Completo</p>
       </div>
-      
+
       <nav className="flex-1 px-4 space-y-2 overflow-y-auto py-4">
         {sidebarItems.map((item) => {
           const isActive = pathname === item.href
@@ -55,8 +55,8 @@ export default function PresentationLayout({ children }: { children: React.React
             <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)}>
               <div className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 group",
-                isActive 
-                  ? "bg-primary text-white shadow-[0_0_20px_rgba(22,163,74,0.3)]" 
+                isActive
+                  ? "bg-primary text-white shadow-[0_0_20px_rgba(22,163,74,0.3)]"
                   : "text-slate-400 hover:text-white hover:bg-white/5"
               )}>
                 <item.icon className={cn("w-5 h-5", isActive ? "text-white" : "text-slate-500 group-hover:text-white")} />
@@ -71,7 +71,7 @@ export default function PresentationLayout({ children }: { children: React.React
       </nav>
 
       <div className="p-6 border-t border-white/10">
-        <Link href="/fazenda/cooperformoso">
+        <Link href="/fazenda/projeto-rio-formoso">
           <Button variant="ghost" className="w-full justify-start text-slate-400 hover:text-white hover:bg-white/5">
             <ArrowLeft className="mr-2 w-4 h-4" /> Voltar ao Site
           </Button>

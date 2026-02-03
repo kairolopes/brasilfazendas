@@ -5,7 +5,7 @@ import { VirtualNarrator } from "@/components/presentation/ui/virtual-narrator"
 import { Sprout, Sun, Droplet, Coins } from "lucide-react"
 
 export default function ProducaoPage() {
-  const narrationText = "O sistema de produção da Cooperformoso é um exemplo de eficiência agronômica. A safra principal é o Arroz Irrigado, cultivado de novembro a abril, com produtividades históricas crescentes que hoje ultrapassam 7.500 kg por hectare. Mas o grande diferencial competitivo é a entressafra. De maio a setembro, utilizamos a tecnologia de sub-irrigação para produzir sementes de soja de altíssima qualidade. Neste sistema, a água sobe por capilaridade, não molhando as folhas. O resultado? Uma lavoura livre de doenças fúngicas, reduzindo drasticamente o custo com defensivos e entregando uma semente com vigor e germinação superiores. É a união perfeita entre produtividade e sanidade."
+  const narrationText = "O sistema de produção do Projeto Rio Formoso é um exemplo de eficiência agronômica. A safra principal é o Arroz Irrigado, cultivado de novembro a abril, com produtividades históricas crescentes que hoje ultrapassam 7.500 kg por hectare. Mas o grande diferencial competitivo é a entressafra. De maio a setembro, utilizamos a tecnologia de sub-irrigação para produzir sementes de soja de altíssima qualidade. Neste sistema, a água sobe por capilaridade, não molhando as folhas. O resultado? Uma lavoura livre de doenças fúngicas, reduzindo drasticamente o custo com defensivos e entregando uma semente com vigor e germinação superiores. É a união perfeita entre produtividade e sanidade."
 
   return (
     <div className="min-h-screen bg-white p-8 md:p-16">
@@ -27,7 +27,7 @@ export default function ProducaoPage() {
         {/* Timeline Visual */}
         <div className="relative py-12 mb-24">
           <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 hidden md:block" />
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative z-10">
             {/* Safra Arroz */}
             <motion.div
@@ -121,20 +121,20 @@ export default function ProducaoPage() {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white/10 rounded-xl p-8 h-[300px] flex items-center justify-center border border-white/10 relative overflow-hidden">
-             {/* Abstract Diagram of Sub-irrigation */}
-             <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-blue-500/30 blur-xl animate-pulse" />
-             <div className="relative z-10 flex flex-col items-center gap-4">
-                <div className="w-1 bg-green-500 h-24 rounded-full" />
-                <div className="w-32 h-1 bg-amber-700 rounded-full" />
-                <div className="flex gap-8">
-                   <div className="w-1 bg-blue-400 h-16 animate-bounce" style={{ animationDelay: '0s' }} />
-                   <div className="w-1 bg-blue-400 h-16 animate-bounce" style={{ animationDelay: '0.2s' }} />
-                   <div className="w-1 bg-blue-400 h-16 animate-bounce" style={{ animationDelay: '0.4s' }} />
-                </div>
-                <span className="text-xs uppercase tracking-widest text-blue-300">Lençol Freático Controlado</span>
-             </div>
+            {/* Abstract Diagram of Sub-irrigation */}
+            <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-blue-500/30 blur-xl animate-pulse" />
+            <div className="relative z-10 flex flex-col items-center gap-4">
+              <div className="w-1 bg-green-500 h-24 rounded-full" />
+              <div className="w-32 h-1 bg-amber-700 rounded-full" />
+              <div className="flex gap-8">
+                <div className="w-1 bg-blue-400 h-16 animate-bounce" style={{ animationDelay: '0s' }} />
+                <div className="w-1 bg-blue-400 h-16 animate-bounce" style={{ animationDelay: '0.2s' }} />
+                <div className="w-1 bg-blue-400 h-16 animate-bounce" style={{ animationDelay: '0.4s' }} />
+              </div>
+              <span className="text-xs uppercase tracking-widest text-blue-300">Lençol Freático Controlado</span>
+            </div>
           </div>
         </motion.div>
       </div>
