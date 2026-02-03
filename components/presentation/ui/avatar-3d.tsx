@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useMemo } from "react"
 import { Canvas, useFrame, extend } from "@react-three/fiber"
-import { OrbitControls, useVideoTexture, ShaderMaterial } from "@react-three/drei"
+import { OrbitControls, useVideoTexture } from "@react-three/drei"
 import * as THREE from "three"
 
 interface Avatar3DProps {
